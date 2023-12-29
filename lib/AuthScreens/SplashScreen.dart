@@ -40,9 +40,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   // Add the GIF here using the Image widget
                   Image.asset(
-                    'AGVA.gif', // Replace with your GIF file path
-                    height: 200,
-                    width: 200,
+                    'assets/images/AGVA.gif',
+                    width: 25,
+                    height: 25,
+                    // fit: BoxFit.cover,
                   ),
                 ],
               ),

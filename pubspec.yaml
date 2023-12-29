@@ -55,7 +55,7 @@ dev_dependencies:
 flutter:
 
  assets:
-    - asset/images/
+    - assets/images/
 
 
  fonts:
