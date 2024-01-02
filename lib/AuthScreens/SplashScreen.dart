@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import './SignIn.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen();
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -15,38 +15,26 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // Start a timer to navigate to SignIn screen after 2 seconds
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => SignIn()),
+        MaterialPageRoute(builder: (context) => SignIn( )),
       );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(),
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Stack(
-          alignment: Alignment.center,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 120,
-                  ),
-                  // Add the GIF here using the Image widget
-                  Image.asset(
-                    "assets/images/Logo.png",
-                    width: 125,
-                    height: 125,
-                    fit: BoxFit.cover,
-                  ),
-                ],
-              ),
+            Image.asset(
+              "assets/images/AGVA.gif",
+              width: 200,
+              height: 200,
+              fit: BoxFit.cover,
             ),
           ],
         ),

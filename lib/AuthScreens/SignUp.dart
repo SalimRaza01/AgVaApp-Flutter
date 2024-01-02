@@ -1,18 +1,58 @@
 // ignore_for_file: prefer_const_constructors
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'SignIn.dart';
-import '../Screens/HomeScreen.dart';
+// import '../Screens/HomeScreen.dart';
+import 'package:http/http.dart' as http;
+import '../config.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({super.key});
-
   @override
-  State<SignUp> createState() => _SignUpState();
+  _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
   bool passwordVisible = false;
+
+  TextEditingController fnameController = TextEditingController();
+  TextEditingController lnameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  bool _isNotValidate = false;
+
+  void registerUser() async {
+    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+var regBody = {
+  "email": emailController.text,
+  "password": passwordController.text,
+  "fname": fnameController.text,
+  "lname": lnameController.text,
+  "confirmPassword": confirmPasswordController.text,
+};
+
+var response = await http.post(Uri.parse(registration),
+  headers: {"Content-Type": "application/json"},
+  body: jsonEncode(regBody));
+
+      var jsonResponse = jsonDecode(response.body);
+      print(jsonResponse);
+      print(jsonResponse['status']);
+      if (jsonResponse['status'] != null &&
+          jsonResponse['status'] is String &&
+          jsonResponse['status'].isNotEmpty) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SignIn()));
+      } else {
+        print("Something Went Wrong");
+      }
+    } else {
+      setState(() {
+        _isNotValidate = true;
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -53,6 +93,7 @@ class _SignUpState extends State<SignUp> {
                       Padding(
                         padding: const EdgeInsets.only(right: 30, left: 30),
                         child: TextFormField(
+                          controller: fnameController,
                           style: TextStyle(color: Colors.black87),
                           decoration: InputDecoration(
                             icon: Icon(
@@ -60,6 +101,8 @@ class _SignUpState extends State<SignUp> {
                               color: Colors.black87,
                             ),
                             hintText: 'First Name',
+                            errorText:
+                                _isNotValidate ? "Enter Proper Info" : null,
                             hintStyle: TextStyle(color: Colors.black45),
                           ),
                         ),
@@ -70,6 +113,7 @@ class _SignUpState extends State<SignUp> {
                       Padding(
                         padding: const EdgeInsets.only(right: 30, left: 30),
                         child: TextFormField(
+                          controller: lnameController,
                           style: TextStyle(color: Colors.black87),
                           decoration: InputDecoration(
                             icon: Icon(
@@ -77,6 +121,8 @@ class _SignUpState extends State<SignUp> {
                               color: Colors.black87,
                             ),
                             hintText: 'Last Name',
+                            errorText:
+                                _isNotValidate ? "Enter Proper Info" : null,
                             hintStyle: TextStyle(color: Colors.black45),
                           ),
                         ),
@@ -87,6 +133,7 @@ class _SignUpState extends State<SignUp> {
                       Padding(
                         padding: const EdgeInsets.only(right: 30, left: 30),
                         child: TextFormField(
+                          controller: emailController,
                           style: TextStyle(color: Colors.black87),
                           decoration: InputDecoration(
                             icon: Icon(
@@ -94,6 +141,8 @@ class _SignUpState extends State<SignUp> {
                               color: Colors.black87,
                             ),
                             hintText: 'Enter your Email',
+                            errorText:
+                                _isNotValidate ? "Enter Proper Info" : null,
                             hintStyle: TextStyle(color: Colors.black45),
                           ),
                         ),
@@ -104,6 +153,7 @@ class _SignUpState extends State<SignUp> {
                       Padding(
                         padding: const EdgeInsets.only(right: 30, left: 30),
                         child: TextFormField(
+                          controller: passwordController,
                           obscureText: passwordVisible,
                           style: TextStyle(color: Colors.black87),
                           decoration: InputDecoration(
@@ -112,6 +162,8 @@ class _SignUpState extends State<SignUp> {
                               color: Colors.black87,
                             ),
                             hintText: 'Enter your Password',
+                            errorText:
+                                _isNotValidate ? "Enter Proper Info" : null,
                             hintStyle: TextStyle(color: Colors.black45),
                             suffixIcon: IconButton(
                               icon: Icon(passwordVisible
@@ -134,6 +186,7 @@ class _SignUpState extends State<SignUp> {
                       Padding(
                         padding: const EdgeInsets.only(right: 30, left: 30),
                         child: TextFormField(
+                          controller: confirmPasswordController,
                           obscureText: passwordVisible,
                           style: TextStyle(color: Colors.black87),
                           decoration: InputDecoration(
@@ -142,6 +195,8 @@ class _SignUpState extends State<SignUp> {
                               color: Colors.black87,
                             ),
                             hintText: 'Confirm Password',
+                            errorText:
+                                _isNotValidate ? "Enter Proper Info" : null,
                             hintStyle: TextStyle(color: Colors.black45),
                             suffixIcon: IconButton(
                               icon: Icon(passwordVisible
@@ -225,15 +280,16 @@ class _SignUpState extends State<SignUp> {
                                     Color.fromARGB(255, 142, 0, 90)
                                   ])),
                           child: TextButton(
+                            onPressed: registerUser,
                             style: TextButton.styleFrom(),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomeScreen(),
-                                ),
-                              );
-                            },
+                            // onPressed: () {
+                            //   Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //       builder: (context) => HomeScreen(token: null,),
+                            //     ),
+                            //   );
+                            // },
                             child: Text(
                               "SIGN UP",
                               style:

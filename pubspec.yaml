@@ -30,6 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http:
+  provider:
+  jwt_decoder:
+  flutter_slidable:
   
 
 
@@ -58,13 +62,14 @@ flutter:
     - assets/images/
 
 
- fonts:
-    - family: Avenir
-      fonts:
-        - asset: fonts/AvenirNextLTPro.otf
+fonts:
+  - family: Avenir
+    fonts:
+      - asset: fonts/AvenirNextLTPro.otf
+
  
 
- uses-material-design: true
+uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
 

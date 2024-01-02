@@ -9,7 +9,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 void main() {
   runApp(
     MaterialApp(
-
+      navigatorKey: GlobalKey<NavigatorState>(),
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.blue),
       darkTheme: ThemeData(brightness: Brightness.dark),
@@ -39,24 +39,30 @@ class AuthProvider extends ChangeNotifier {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp();
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
+      navigatorKey: GlobalKey<NavigatorState>(),
       themeMode: ThemeMode.light,
       theme: ThemeData(primarySwatch: Colors.blue),
       darkTheme: ThemeData(brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
       initialRoute: "/splash",
+      home: Consumer<AuthProvider>(
+        builder: (context, authProvider, child) {
+          return authProvider.isLoading
+              ? CircularProgressIndicator() // Add a loading indicator if needed
+              : authProvider.isAuthenticated
+                  ? HomeScreen(token: authProvider.token)
+                  : SignIn();
+        },
+      ),
       routes: {
         "/signup": (context) => SignUp(),
         "/signin": (context) => SignIn(),
         "/splash": (context) => SplashScreen(),
-        "/home": (context) => HomeScreen(
-              token: null,
-            ),
       },
     );
   }
