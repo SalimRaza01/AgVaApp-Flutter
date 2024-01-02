@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required token}) : super(key: key);
 
@@ -11,9 +10,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool showBatteryInfo = false;
-  bool showPatchInfo = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,18 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 0),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.more_horiz,
-                          size: 30,
-                        ),
-                        onPressed: () {
-                          showPopupMenu(context);
-                        },
-                      ),
-                    ),
                   ],
                 ),
               ],
@@ -81,64 +65,64 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         drawer: Drawer(
           child: Container(
-            color: Color.fromARGB(255, 31, 29, 86),
+            color: Color.fromARGB(255, 255, 255, 255),
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
                 DrawerHeader(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 31, 29, 86),
+                    color: Color.fromARGB(255, 255, 255, 255),
                   ),
                   child: Align(
-                    alignment: Alignment.topCenter,
+                    alignment: Alignment.center,
                     child: Text(
-                      'InsuLink',
+                      'Drawer',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 48,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 25,
                       ),
                     ),
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.home, color: Colors.white),
+                  leading: const Icon(Icons.home, color: Color.fromARGB(255, 0, 0, 0)),
                   title: Text(
                     'HOME',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: const Color.fromARGB(255, 0, 0, 0),
                       fontSize: 14,
                     ),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: const Icon(Icons.task, color: Colors.white),
+                  leading: const Icon(Icons.task, color: Colors.black),
                   title: Text(
                     'BOLUS WIZARD',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 14,
                     ),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: const Icon(Icons.trending_up, color: Colors.white),
+                  leading: const Icon(Icons.trending_up, color: Colors.black),
                   title: Text(
                     'REPORT',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 14,
                     ),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: const Icon(Icons.settings, color: Colors.white),
+                  leading: const Icon(Icons.settings, color: Colors.black),
                   title: Text(
                     'SETTINGS',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 14,
                     ),
                   ),
@@ -148,42 +132,5 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ));
-  }
-
-  void showPopupMenu(BuildContext context) {
-    showMenu(
-      context: context,
-      position: RelativeRect.fromLTRB(80, 180, 20, 0),
-      items: [
-        PopupMenuItem(
-          child: Text(
-            'Battery Info',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          onTap: () {
-            setState(() {
-              showBatteryInfo = true;
-            });
-          },
-        ),
-        PopupMenuItem(
-          child: Text(
-            'Insulin Patch',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          onTap: () {
-            setState(() {
-              showPatchInfo = true;
-            });
-          },
-        ),
-      ],
-      elevation: 8.0,
-      color: Color.fromARGB(255, 31, 29, 86),
-    );
   }
 }

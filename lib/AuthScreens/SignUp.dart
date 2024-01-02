@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_const_constructors
-import 'dart:convert';
+// ignore_for_file: prefer_const_constructors, prefer_final_fields
+
+import 'package:agva_app/AuthScreens/SignIn.dart';
 import 'package:agva_app/Screens/TandCScreen.dart';
+import 'package:agva_app/config.dart';
 import 'package:flutter/material.dart';
-import 'SignIn.dart';
-// import '../Screens/HomeScreen.dart';
 import 'package:http/http.dart' as http;
-import '../config.dart';
+import 'dart:convert';
 
 class SignUp extends StatefulWidget {
   @override
@@ -13,7 +13,9 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  // GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool passwordVisible = false;
+  bool _isNotValidate = false;
   bool first = false;
 
   TextEditingController fnameController = TextEditingController();
@@ -21,8 +23,6 @@ class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-
-  bool _isNotValidate = false;
 
   void registerUser() async {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
@@ -34,18 +34,23 @@ class _SignUpState extends State<SignUp> {
         "confirmPassword": confirmPasswordController.text,
       };
 
-      var response = await http.post(Uri.parse(registration),
-          headers: {"Content-Type": "application/json"},
-          body: jsonEncode(regBody));
+      var response = await http.post(
+        Uri.parse(registration),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(regBody),
+      );
 
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
       print(jsonResponse['status']);
+
       if (jsonResponse['status'] != null &&
           jsonResponse['status'] is String &&
           jsonResponse['status'].isNotEmpty) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignIn()));
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => SignIn()),
+        );
       } else {
         print("Something Went Wrong");
       }
@@ -73,284 +78,286 @@ class _SignUpState extends State<SignUp> {
       child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Stack(alignment: Alignment.center, children: [
-            Container(
-                alignment: Alignment.center,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 80,
-                      ),
-                      Text(
-                        "AgVa",
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          fontSize: 40,
-                          color: Color.fromARGB(255, 157, 0, 86),
+            SingleChildScrollView(
+              child: Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 80,
                         ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 30, left: 30),
-                        child: TextFormField(
-                          controller: fnameController,
-                          style: TextStyle(color: Colors.black87),
-                          decoration: InputDecoration(
-                            icon: Icon(
-                              Icons.person,
-                              color: Colors.black87,
-                            ),
-                            hintText: 'First Name',
-                            errorText:
-                                _isNotValidate ? "Enter Proper Info" : null,
-                            hintStyle: TextStyle(color: Colors.black45),
+                        Text(
+                          "AgVa",
+                          style: TextStyle(
+                            fontFamily: 'Avenir',
+                            fontSize: 40,
+                            color: Color.fromARGB(255, 157, 0, 86),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 30, left: 30),
-                        child: TextFormField(
-                          controller: lnameController,
-                          style: TextStyle(color: Colors.black87),
-                          decoration: InputDecoration(
-                            icon: Icon(
-                              Icons.person,
-                              color: Colors.black87,
-                            ),
-                            hintText: 'Last Name',
-                            errorText:
-                                _isNotValidate ? "Enter Proper Info" : null,
-                            hintStyle: TextStyle(color: Colors.black45),
-                          ),
+                        SizedBox(
+                          height: 30,
                         ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 30, left: 30),
-                        child: TextFormField(
-                          controller: emailController,
-                          style: TextStyle(color: Colors.black87),
-                          decoration: InputDecoration(
-                            icon: Icon(
-                              Icons.email,
-                              color: Colors.black87,
-                            ),
-                            hintText: 'Enter your Email',
-                            errorText:
-                                _isNotValidate ? "Enter Proper Info" : null,
-                            hintStyle: TextStyle(color: Colors.black45),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 30, left: 30),
-                        child: TextFormField(
-                          controller: passwordController,
-                          obscureText: passwordVisible,
-                          style: TextStyle(color: Colors.black87),
-                          decoration: InputDecoration(
-                            icon: Icon(
-                              Icons.lock,
-                              color: Colors.black87,
-                            ),
-                            hintText: 'Enter your Password',
-                            errorText:
-                                _isNotValidate ? "Enter Proper Info" : null,
-                            hintStyle: TextStyle(color: Colors.black45),
-                            suffixIcon: IconButton(
-                              icon: Icon(passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    passwordVisible = !passwordVisible;
-                                  },
-                                );
-                              },
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          child: TextFormField(
+                            controller: fnameController,
+                            style: TextStyle(color: Colors.black87),
+                            decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.person,
+                                color: Colors.black87,
+                              ),
+                              hintText: 'First Name',
+                              errorText:
+                                  _isNotValidate ? "Enter Proper Info" : null,
+                              hintStyle: TextStyle(color: Colors.black45),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 30, left: 30),
-                        child: TextFormField(
-                          controller: confirmPasswordController,
-                          obscureText: passwordVisible,
-                          style: TextStyle(color: Colors.black87),
-                          decoration: InputDecoration(
-                            icon: Icon(
-                              Icons.lock,
-                              color: Colors.black87,
-                            ),
-                            hintText: 'Confirm Password',
-                            errorText:
-                                _isNotValidate ? "Enter Proper Info" : null,
-                            hintStyle: TextStyle(color: Colors.black45),
-                            suffixIcon: IconButton(
-                              icon: Icon(passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    passwordVisible = !passwordVisible;
-                                  },
-                                );
-                              },
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          child: TextFormField(
+                            controller: lnameController,
+                            style: TextStyle(color: Colors.black87),
+                            decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.person,
+                                color: Colors.black87,
+                              ),
+                              hintText: 'Last Name',
+                              errorText:
+                                  _isNotValidate ? "Enter Proper Info" : null,
+                              hintStyle: TextStyle(color: Colors.black45),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Checkbox(
-                            value: first,
-                            activeColor: const Color.fromARGB(255, 184, 46, 92),
-                            checkColor: Colors.white,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                first = value!;
-                              });
-                            },
-                          ),
-                          Text(
-                            "I agree with ",
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 14,
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          child: TextFormField(
+                            controller: emailController,
+                            style: TextStyle(color: Colors.black87),
+                            decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.email,
+                                color: Colors.black87,
+                              ),
+                              hintText: 'Enter your Email',
+                              errorText:
+                                  _isNotValidate ? "Enter Proper Info" : null,
+                              hintStyle: TextStyle(color: Colors.black45),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => TermsCondition(),
-                                ),
-                              );
-                              print('Terms and Conditions clicked');
-                            },
-                            child: Text(
-                              "Terms and Conditions",
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontSize: 14,
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          child: TextFormField(
+                            controller: passwordController,
+                            obscureText: passwordVisible,
+                            style: TextStyle(color: Colors.black87),
+                            decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.lock,
+                                color: Colors.black87,
+                              ),
+                              hintText: 'Enter your Password',
+                              errorText:
+                                  _isNotValidate ? "Enter Proper Info" : null,
+                              hintStyle: TextStyle(color: Colors.black45),
+                              suffixIcon: IconButton(
+                                icon: Icon(passwordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: () {
+                                  setState(
+                                    () {
+                                      passwordVisible = !passwordVisible;
+                                    },
+                                  );
+                                },
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(15, 0, 22, 0),
-                        child: Container(
-                          height: 45,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.3),
-                                  spreadRadius: 3,
-                                  blurRadius: 20,
-                                  offset: Offset(
-                                      0, 3), // changes position of shadow
-                                ),
-                              ],
-                              color: Colors.white,
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    Color.fromARGB(255, 218, 0, 138),
-                                    Color.fromARGB(255, 142, 0, 90)
-                                  ])),
-                          child: TextButton(
-                            onPressed: registerUser,
-                            style: TextButton.styleFrom(),
-                            // onPressed: () {
-                            //   Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: (context) => HomeScreen(token: null,),
-                            //     ),
-                            //   );
-                            // },
-                            child: Text(
-                              "SIGN UP",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          child: TextFormField(
+                            controller: confirmPasswordController,
+                            obscureText: passwordVisible,
+                            style: TextStyle(color: Colors.black87),
+                            decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.lock,
+                                color: Colors.black87,
+                              ),
+                              hintText: 'Confirm Password',
+                              errorText:
+                                  _isNotValidate ? "Enter Proper Info" : null,
+                              hintStyle: TextStyle(color: Colors.black45),
+                              suffixIcon: IconButton(
+                                icon: Icon(passwordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: () {
+                                  setState(
+                                    () {
+                                      passwordVisible = !passwordVisible;
+                                    },
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(15, 0, 22, 0),
-                        child: Container(
-                          height: 45,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.3),
-                                  spreadRadius: 3,
-                                  blurRadius: 20,
-                                  offset: Offset(
-                                      0, 3), // changes position of shadow
-                                ),
-                              ],
-                              color: Colors.white,
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    Color.fromARGB(255, 255, 255, 255),
-                                    Color.fromARGB(255, 255, 255, 255)
-                                  ])),
-                          child: TextButton(
-                            style: TextButton.styleFrom(),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignIn(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "SIGN IN",
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
+                              value: first,
+                              activeColor: const Color.fromARGB(255, 184, 46, 92),
+                              checkColor: Colors.white,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  first = value!;
+                                });
+                              },
+                            ),
+                            Text(
+                              "I agree with ",
                               style: TextStyle(
-                                  color: Color.fromARGB(255, 157, 0, 86),
-                                  fontSize: 15),
+                                color: Colors.black87,
+                                fontSize: 14,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => TermsCondition(),
+                                  ),
+                                );
+                                print('Terms and Conditions clicked');
+                              },
+                              child: Text(
+                                "Terms and Conditions",
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(15, 0, 22, 0),
+                          child: Container(
+                            height: 45,
+                            width: 300,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    spreadRadius: 3,
+                                    blurRadius: 20,
+                                    offset: Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                                color: Colors.white,
+                                gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      Color.fromARGB(255, 218, 0, 138),
+                                      Color.fromARGB(255, 142, 0, 90)
+                                    ])),
+                            child: TextButton(
+                              onPressed: registerUser,
+                              style: TextButton.styleFrom(),
+                              child: Text(
+                                "SIGN UP",
+                                style:
+                                    TextStyle(color: Colors.white, fontSize: 15),
+                              ),
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(15, 0, 22, 0),
+                          child: Container(
+                            height: 45,
+                            width: 300,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    spreadRadius: 3,
+                                    blurRadius: 20,
+                                    offset: Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                                color: Colors.white,
+                                gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      Color.fromARGB(255, 255, 255, 255),
+                                      Color.fromARGB(255, 255, 255, 255)
+                                    ])),
+                            child: TextButton(
+                              style: TextButton.styleFrom(),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SignIn(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                "SIGN IN",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 157, 0, 86),
+                                    fontSize: 15),
+                              ),
+                            ),
+
+                          ),
+                          
+                        ),
+                            SizedBox(
+                          height: 80,
+                        ),
+                      ])
+                      
                       ),
-                    ]))
+                      
+            )
           ])),
     );
   }
