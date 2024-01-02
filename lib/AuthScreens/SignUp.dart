@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:convert';
+import 'package:agva_app/Screens/TandCScreen.dart';
 import 'package:flutter/material.dart';
 import 'SignIn.dart';
 // import '../Screens/HomeScreen.dart';
@@ -13,6 +14,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool passwordVisible = false;
+  bool first = false;
 
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
@@ -24,17 +26,17 @@ class _SignUpState extends State<SignUp> {
 
   void registerUser() async {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-var regBody = {
-  "email": emailController.text,
-  "password": passwordController.text,
-  "fname": fnameController.text,
-  "lname": lnameController.text,
-  "confirmPassword": confirmPasswordController.text,
-};
+      var regBody = {
+        "email": emailController.text,
+        "password": passwordController.text,
+        "fname": fnameController.text,
+        "lname": lnameController.text,
+        "confirmPassword": confirmPasswordController.text,
+      };
 
-var response = await http.post(Uri.parse(registration),
-  headers: {"Content-Type": "application/json"},
-  body: jsonEncode(regBody));
+      var response = await http.post(Uri.parse(registration),
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode(regBody));
 
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
@@ -220,10 +222,14 @@ var response = await http.post(Uri.parse(registration),
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Checkbox(
-                            value: false,
-                            onChanged: (newValue) {},
-                            activeColor: Colors.blue,
+                            value: first,
+                            activeColor: const Color.fromARGB(255, 184, 46, 92),
                             checkColor: Colors.white,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                first = value!;
+                              });
+                            },
                           ),
                           Text(
                             "I agree with ",
@@ -237,7 +243,7 @@ var response = await http.post(Uri.parse(registration),
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SignIn(),
+                                  builder: (context) => TermsCondition(),
                                 ),
                               );
                               print('Terms and Conditions clicked');

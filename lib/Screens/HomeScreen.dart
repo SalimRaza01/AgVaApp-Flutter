@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Padding(
                             padding: EdgeInsets.only(left: 0),
                             child: Text(
-                              'Salim Raza',
+                              'Username',
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
