@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors, unused_import
+// ignore_for_file: prefer_const_constructors,  missing_required_param
 
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'AuthScreens/SignIn.dart';
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
         "/signup": (context) => SignUp(),
         "/signin": (context) => SignIn(),
         "/splash": (context) => SplashScreen(),
-        "/home": (context) => HomeScreen(token: token),
+        "/home": (context) => HomeScreen(),
       },
     );
   }
