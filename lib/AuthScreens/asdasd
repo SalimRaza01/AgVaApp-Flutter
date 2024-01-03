@@ -1,54 +1,57 @@
-// class _SignInState extends State<SignIn> {
-//   TextEditingController emailController = TextEditingController();
-//   TextEditingController passwordController = TextEditingController();
+import 'dart:async';
+import 'package:flutter/material.dart';
+import '../Screens/HomeScreen.dart';
+import './SignIn.dart';
 
-//   bool passwordVisible = true;
-//   late SharedPreferences prefs; 
+class SplashScreen extends StatefulWidget {
+  const SplashScreen();
 
-//   @override
-//   void initState(){
-//     super.initState();
-//     initSharedPref();
-//   }
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
 
-//   void initSharedPref() async{
-//     prefs = await SharedPreferences.getInstance();
-//   }
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    checkUserLoggedIn();
+  }
 
-//   void signIn() async {
-//     if (prefs == null) {
-//       // Handle the case where prefs is not initialized yet.
-//       print('SharedPreferences not initialized.');
-//       return;
-//     }
+  Future<void> checkUserLoggedIn() async {
+    await Future.delayed(Duration(seconds: 2));
 
-//     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-//       try {
-//         var response = await http.post(
-//           Uri.parse(login),
-//           headers: {"Content-Type": "application/json"},
-//           body: jsonEncode({
-//             "email": emailController.text,
-//             "password": passwordController.text,
-//           }),
-//         );
+    String? token = "token";
 
-//         if (response.statusCode == 200) {
-//           var jsonResponse = jsonDecode(response.body);
-//           if (jsonResponse['status'] == true) {
-//             var myToken = jsonResponse['token'];
-//             prefs.setString('token', myToken);
-//             Navigator.push(
-//               context,
-//               MaterialPageRoute(builder: (context) => HomeScreen(token: myToken)),
-//             );
-//           }
-//         } else {
-//           print('Invalid User Credential: ${response.statusCode}');
-//         }
-//       } catch (e) {
-//         print('Error: $e');
-//       }
-//     }
-//   }
-// }
+    if (token != null && token.isNotEmpty) {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => SignIn()),
+      
+      );
+    } else {
+      Navigator.of(context).pushReplacement(
+  
+          MaterialPageRoute(builder: (context) => HomeScreen(token: token)),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/images/AGVA.gif",
+              width: 200,
+              height: 200,
+              fit: BoxFit.cover,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

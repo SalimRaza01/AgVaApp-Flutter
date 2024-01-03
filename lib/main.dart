@@ -1,25 +1,25 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import
 
-import 'dart:html';
-
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import './AuthScreens/SignIn.dart';
-import './AuthScreens/SignUp.dart';
-import './Screens/HomeScreen.dart';
-import './AuthScreens/SplashScreen.dart';
+import 'AuthScreens/SignIn.dart';
+import 'AuthScreens/SignUp.dart';
+import 'AuthScreens/SplashScreen.dart';
+import 'Screens/HomeScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  runApp(MyApp(token: prefs.getString('token'),));
+  runApp(MyApp(token: prefs.getString('token')));
 }
 
 class MyApp extends StatelessWidget {
   final token;
   const MyApp({
-    @required this.token, Key? key,
-  }): super(key: key );
+    @required this.token,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         "/signup": (context) => SignUp(),
         "/signin": (context) => SignIn(),
         "/splash": (context) => SplashScreen(),
-        "/home": (context) => HomeScreen(),
+        "/home": (context) => HomeScreen(token: token),
       },
     );
   }
