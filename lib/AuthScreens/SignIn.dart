@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -17,7 +19,19 @@ class _SignInState extends State<SignIn> {
   TextEditingController passwordController = TextEditingController();
 
   // bool _isNotValidate = false;
+
   bool passwordVisible = true;
+  late SharedPreferences prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    initSharedPref();
+  }
+
+  void initSharedPref() async {
+    prefs = await SharedPreferences.getInstance();
+  }
 
   void signIn() async {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
@@ -33,14 +47,16 @@ class _SignInState extends State<SignIn> {
 
         if (response.statusCode == 200) {
           var jsonResponse = jsonDecode(response.body);
-          print(jsonResponse['status']);
-          var myToken = jsonResponse['token'];
-          print(jsonResponse['success']);
-          print('Token: $myToken');
+          // print(jsonResponse['status']);
           if (jsonResponse['status'] == true) {
+            var myToken = jsonResponse['token'];
+            prefs.setString('token', myToken);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(
+                  builder: (context) => HomeScreen(
+                        token: myToken,
+                      )),
             );
           }
         } else {

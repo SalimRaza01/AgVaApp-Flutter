@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:intl_phone_field/intl_phone_field.dart';
+
 class SignUp extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
@@ -21,6 +23,10 @@ class _SignUpState extends State<SignUp> {
 
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
+  TextEditingController hospitalNameController = TextEditingController();
+  TextEditingController designationController = TextEditingController();
+  TextEditingController departmentController = TextEditingController();
+  TextEditingController contactNumberController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -30,6 +36,10 @@ class _SignUpState extends State<SignUp> {
       var regBody = {
         "email": emailController.text,
         "password": passwordController.text,
+        "hospitalName": hospitalNameController.text,
+        "designation": designationController.text,
+        "department": departmentController.text,
+        "contactNumber": contactNumberController.text,
         "fname": fnameController.text,
         "lname": lnameController.text,
         "confirmPassword": confirmPasswordController.text,
@@ -44,13 +54,12 @@ class _SignUpState extends State<SignUp> {
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
       print(jsonResponse['status']);
-         if (jsonResponse['status'] == true) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => RegDone()),
-            );
-          }
-      else {
+      if (jsonResponse['status'] == true) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => RegDone()),
+        );
+      } else {
         print("Something Went Wrong");
       }
     } else {
@@ -136,6 +145,83 @@ class _SignUpState extends State<SignUp> {
                         ),
                         SizedBox(
                           height: 40,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          child: TextFormField(
+                            controller: hospitalNameController,
+                            style: TextStyle(color: Colors.black87),
+                            decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.local_hospital,
+                                color: Colors.black87,
+                              ),
+                              hintText: 'Enter Hospital Name',
+                              errorText:
+                                  _isNotValidate ? "Enter Proper Info" : null,
+                              hintStyle: TextStyle(color: Colors.black45),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          child: TextFormField(
+                            controller: designationController,
+                            style: TextStyle(color: Colors.black87),
+                            decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.person,
+                                color: Colors.black87,
+                              ),
+                              hintText: 'Enter your Designation',
+                              errorText:
+                                  _isNotValidate ? "Enter Proper Info" : null,
+                              hintStyle: TextStyle(color: Colors.black45),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          child: TextFormField(
+                            controller: departmentController,
+                            style: TextStyle(color: Colors.black87),
+                            decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.person,
+                                color: Colors.black87,
+                              ),
+                              hintText: 'Enter your Department',
+                              errorText:
+                                  _isNotValidate ? "Enter Proper Info" : null,
+                              hintStyle: TextStyle(color: Colors.black45),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          child: IntlPhoneField(
+                            controller: contactNumberController,
+                            initialCountryCode: 'IN',
+                            style: TextStyle(color: Colors.black87),
+                            decoration: InputDecoration(
+                              hintText: 'Contact Number',
+                              errorText:
+                                  _isNotValidate ? "Enter Proper Info" : null,
+                              hintStyle: TextStyle(color: Colors.black45),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 30, left: 30),
@@ -228,7 +314,8 @@ class _SignUpState extends State<SignUp> {
                           children: [
                             Checkbox(
                               value: first,
-                              activeColor: const Color.fromARGB(255, 184, 46, 92),
+                              activeColor:
+                                  const Color.fromARGB(255, 184, 46, 92),
                               checkColor: Colors.white,
                               onChanged: (bool? value) {
                                 setState(() {
@@ -295,8 +382,8 @@ class _SignUpState extends State<SignUp> {
                               style: TextButton.styleFrom(),
                               child: Text(
                                 "SIGN UP",
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 15),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
                               ),
                             ),
                           ),
@@ -345,17 +432,12 @@ class _SignUpState extends State<SignUp> {
                                     fontSize: 15),
                               ),
                             ),
-
                           ),
-                          
                         ),
-                            SizedBox(
+                        SizedBox(
                           height: 80,
                         ),
-                      ])
-                      
-                      ),
-                      
+                      ])),
             )
           ])),
     );

@@ -1,18 +1,25 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './AuthScreens/SignIn.dart';
 import './AuthScreens/SignUp.dart';
 import './Screens/HomeScreen.dart';
 import './AuthScreens/SplashScreen.dart';
 
-void main() {
-  runApp( const MyApp()
-  );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  runApp(MyApp(token: prefs.getString('token'),));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp();
+  final token;
+  const MyApp({
+    @required this.token, Key? key,
+  }): super(key: key );
 
   @override
   Widget build(BuildContext context) {
