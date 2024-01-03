@@ -1,11 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
 import 'dart:convert';
-import 'package:agva_app/main.dart';
+import '../Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
-// import '../Screens/HomeScreen.dart';
 import '../config.dart';
 import './SignUp.dart';
 
@@ -17,7 +15,8 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool _isNotValidate = false;
+
+  // bool _isNotValidate = false;
   bool passwordVisible = true;
 
   void signIn() async {
@@ -34,33 +33,21 @@ class _SignInState extends State<SignIn> {
 
         if (response.statusCode == 200) {
           var jsonResponse = jsonDecode(response.body);
-          print('API Response: $jsonResponse');
-          if (jsonResponse['status'] != null &&
-              jsonResponse['status'] is bool) {
-            if (jsonResponse['status']) {
-              var myToken = jsonResponse['token'];
-              print('Login successful. Token: $myToken');
-
-              // Update the token in AuthProvider
-              Provider.of<AuthProvider>(context, listen: false)
-                  .setToken(myToken);
-
-              // Print whether pop is possible
-              print('Can pop: ${Navigator.canPop(context)}');
-
-              // Navigate to the HomeScreen
-              Navigator.pushReplacementNamed(context, '/home');
-            } else {
-              print('Something went wrong');
-            }
+          print(jsonResponse['status']);
+          var myToken = jsonResponse['token'];
+          print(jsonResponse['success']);
+          print('Token: $myToken');
+          if (jsonResponse['status'] == true) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
           }
         } else {
           print('Invalid User Credential: ${response.statusCode}');
-          // You can show an error message or handle the error accordingly.
         }
       } catch (e) {
         print('Error: $e');
-        // You can show an error message or handle the error accordingly.
       }
     }
   }
@@ -102,7 +89,7 @@ class _SignInState extends State<SignIn> {
                       style: TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
                         icon: Icon(Icons.email, color: Colors.black87),
-                        errorText: _isNotValidate ? "Enter Proper Info" : null,
+                        // errorText: _isNotValidate ? "Enter Proper Info" : null,
                         hintText: 'Enter your email',
                         hintStyle: TextStyle(color: Colors.black45),
                       ),
@@ -118,7 +105,7 @@ class _SignInState extends State<SignIn> {
                       decoration: InputDecoration(
                         icon: Icon(Icons.lock, color: Colors.black87),
                         hintText: 'Enter your Password',
-                        errorText: _isNotValidate ? "Enter Proper Info" : null,
+                        // errorText: _isNotValidate ? "Enter Proper Info" : null,
                         hintStyle: TextStyle(color: Colors.black45),
                         suffixIcon: IconButton(
                           icon: Icon(passwordVisible

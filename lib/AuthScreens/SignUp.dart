@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_final_fields
 
 import 'package:agva_app/AuthScreens/SignIn.dart';
+import 'package:agva_app/Screens/RegDone.dart';
 import 'package:agva_app/Screens/TandCScreen.dart';
 import 'package:agva_app/config.dart';
 import 'package:flutter/material.dart';
@@ -43,15 +44,13 @@ class _SignUpState extends State<SignUp> {
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
       print(jsonResponse['status']);
-
-      if (jsonResponse['status'] != null &&
-          jsonResponse['status'] is String &&
-          jsonResponse['status'].isNotEmpty) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => SignIn()),
-        );
-      } else {
+         if (jsonResponse['status'] == true) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => RegDone()),
+            );
+          }
+      else {
         print("Something Went Wrong");
       }
     } else {

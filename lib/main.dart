@@ -1,40 +1,14 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'AuthScreens/SignUp.dart';
-import 'AuthScreens/SignIn.dart';
-import 'Screens/HomeScreen.dart';
-import 'package:agva_app/AuthScreens/SplashScreen.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
+import './AuthScreens/SignIn.dart';
+import './AuthScreens/SignUp.dart';
+import './Screens/HomeScreen.dart';
+import './AuthScreens/SplashScreen.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      themeMode: ThemeMode.light,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      darkTheme: ThemeData(brightness: Brightness.dark),
-      debugShowCheckedModeBanner: false,
-      home: ChangeNotifierProvider(
-        create: (context) => AuthProvider(),
-        child: MyApp(),
-      ),
-    ),
+  runApp( const MyApp()
   );
-}
-
-class AuthProvider extends ChangeNotifier {
-  String? _token;
-  bool _isLoading = true;
-
-  String? get token => _token;
-  bool get isLoading => _isLoading;
-
-  void setToken(String? value) {
-    _token = value;
-    _isLoading = false;
-    notifyListeners();
-  }
-
-  bool get isAuthenticated => _token != null && !JwtDecoder.isExpired(_token!);
 }
 
 class MyApp extends StatelessWidget {
@@ -52,9 +26,7 @@ class MyApp extends StatelessWidget {
         "/signup": (context) => SignUp(),
         "/signin": (context) => SignIn(),
         "/splash": (context) => SplashScreen(),
-        "/home": (context) => HomeScreen(
-              token: null,
-            ),
+        "/home": (context) => HomeScreen(),
       },
     );
   }
