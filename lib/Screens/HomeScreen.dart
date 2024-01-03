@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
-                                                                Padding(
+                                Padding(
                                   padding: EdgeInsets.only(left: 5),
                                   child: Text(
                                     lname,
@@ -291,7 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Colors.white,
               ),
               child: Align(
                 alignment: Alignment.center,
@@ -317,9 +317,21 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {},
             ),
             ListTile(
+              leading:
+                  const Icon(Icons.person, color: Color.fromARGB(255, 0, 0, 0)),
+              title: Text(
+                'PROFILE',
+                style: TextStyle(
+                  color: const Color.fromARGB(255, 0, 0, 0),
+                  fontSize: 14,
+                ),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
               leading: const Icon(Icons.task, color: Colors.black),
               title: Text(
-                'BOLUS WIZARD',
+                'DEVICES',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 14,
@@ -330,7 +342,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
               leading: const Icon(Icons.trending_up, color: Colors.black),
               title: Text(
-                'REPORT',
+                'LIVE',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 14,
