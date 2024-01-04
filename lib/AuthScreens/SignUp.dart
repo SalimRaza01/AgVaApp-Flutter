@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_final_fields, use_build_context_synchronously
+// ignore_for_file: prefer_const_constructors, prefer_final_fields, use_build_context_synchronously, prefer_const_literals_to_create_immutables
 
 import 'package:agva_app/AuthScreens/SignIn.dart';
 import 'package:agva_app/Screens/RegDone.dart';
@@ -218,18 +218,42 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 20,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 30, left: 30),
                           child: Container(
-                            
+                            width: 300,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromARGB(255, 255, 255, 255),
+                                  Color.fromARGB(255, 255, 255, 255)
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 3,
+                                  blurRadius: 20,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 DropdownButton(
                                   value: dropdownvalue,
                                   icon: const Icon(Icons.keyboard_arrow_down),
+                                  underline: SizedBox(),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                  ),
                                   items: items.map((String items) {
                                     return DropdownMenuItem(
                                       value: items,
@@ -247,7 +271,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 20,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 30, left: 30),
