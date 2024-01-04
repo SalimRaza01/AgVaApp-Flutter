@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_final_fields
+// ignore_for_file: prefer_const_constructors, prefer_final_fields, use_build_context_synchronously
 
 import 'package:agva_app/AuthScreens/SignIn.dart';
 import 'package:agva_app/Screens/RegDone.dart';
@@ -21,40 +21,54 @@ class _SignUpState extends State<SignUp> {
   bool _isNotValidate = false;
   bool first = false;
 
-  TextEditingController fnameController = TextEditingController();
-  TextEditingController lnameController = TextEditingController();
+  String dropdownvalue = 'Select Speciality';
+  var items = [
+    'Select Speciality',
+    'Neoro',
+    'Anesthesiologist',
+    'Nurse',
+  ];
+
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
   TextEditingController hospitalNameController = TextEditingController();
   TextEditingController designationController = TextEditingController();
   TextEditingController departmentController = TextEditingController();
+  TextEditingController specialityController = TextEditingController();
   TextEditingController contactNumberController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  void registerUser() async {
-    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+  void register() async {
+    if (firstNameController.text.isNotEmpty &&
+        lastNameController.text.isNotEmpty &&
+        hospitalNameController.text.isNotEmpty &&
+        designationController.text.isNotEmpty &&
+        departmentController.text.isNotEmpty &&
+        specialityController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty) {
       var regBody = {
-        "email": emailController.text,
-        "password": passwordController.text,
+        "firstName": firstNameController.text,
+        "lastName": lastNameController.text,
         "hospitalName": hospitalNameController.text,
         "designation": designationController.text,
         "department": departmentController.text,
+        "speciality": specialityController,
         "contactNumber": contactNumberController.text,
-        "fname": fnameController.text,
-        "lname": lnameController.text,
-        "confirmPassword": confirmPasswordController.text,
+        "email": emailController.text,
+        "passwordHash": passwordController.text,
       };
 
       var response = await http.post(
-        Uri.parse(registration),
+        Uri.parse(registerUser),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(regBody),
       );
-
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
-      print(jsonResponse['status']);
-      if (jsonResponse['status'] == true) {
+      if (jsonResponse) {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => RegDone()),
@@ -109,7 +123,7 @@ class _SignUpState extends State<SignUp> {
                         Padding(
                           padding: const EdgeInsets.only(right: 30, left: 30),
                           child: TextFormField(
-                            controller: fnameController,
+                            controller: firstNameController,
                             style: TextStyle(color: Colors.black87),
                             decoration: InputDecoration(
                               icon: Icon(
@@ -129,7 +143,7 @@ class _SignUpState extends State<SignUp> {
                         Padding(
                           padding: const EdgeInsets.only(right: 30, left: 30),
                           child: TextFormField(
-                            controller: lnameController,
+                            controller: lastNameController,
                             style: TextStyle(color: Colors.black87),
                             decoration: InputDecoration(
                               icon: Icon(
@@ -200,6 +214,35 @@ class _SignUpState extends State<SignUp> {
                               errorText:
                                   _isNotValidate ? "Enter Proper Info" : null,
                               hintStyle: TextStyle(color: Colors.black45),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          child: Container(
+                            
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                DropdownButton(
+                                  value: dropdownvalue,
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                  items: items.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Text(items),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropdownvalue = newValue!;
+                                    });
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -378,7 +421,7 @@ class _SignUpState extends State<SignUp> {
                                       Color.fromARGB(255, 142, 0, 90)
                                     ])),
                             child: TextButton(
-                              onPressed: registerUser,
+                              onPressed: register,
                               style: TextButton.styleFrom(),
                               child: Text(
                                 "SIGN UP",

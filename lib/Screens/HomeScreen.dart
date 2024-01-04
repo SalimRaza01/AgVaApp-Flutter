@@ -1,35 +1,31 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_const
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_const, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
+import '../widgets/DeviceDetails.dart';
+
 class HomeScreen extends StatefulWidget {
-  final token;
-  const HomeScreen({@required this.token, Key? key}) : super(key: key);
+  // final token;
+  const HomeScreen({ Key? key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late String email;
-  late String fname;
-  late String lname;
-  late String hospitalName;
-  late String designation;
-  late String department;
-  
+
   @override
   void initState() {
     super.initState();
-    Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
+    // Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
 
-    email = jwtDecodedToken['email'];
-    fname = jwtDecodedToken['fname'];
-    lname = jwtDecodedToken['lname'];
-    hospitalName = jwtDecodedToken['hospitalName'];
-    designation = jwtDecodedToken['designation'];
-    department = jwtDecodedToken['department'];
+    // email = jwtDecodedToken['email'];
+    // firstName = jwtDecodedToken['firstName'];
+    // lastName = jwtDecodedToken['lastName'];
+    // hospitalName = jwtDecodedToken['hospitalName'];
+    // designation = jwtDecodedToken['designation'];
+    // department = jwtDecodedToken['department'];
   }
 
   @override
@@ -73,8 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              Color.fromARGB(255, 0, 0, 0),
-                              Color.fromARGB(255, 0, 0, 0)
+                             Color.fromARGB(255, 157, 0, 86),
+                             Color.fromARGB(255, 157, 0, 86)
                             ],
                           ),
                         ),
@@ -86,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Text(
                                 'Name',
                                 style: TextStyle(
+                                  fontFamily: 'Avenir',
                                   color: Colors.white,
                                 ),
                               ),
@@ -95,8 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
                                   child: Text(
-                                    fname,
+                                    'Name',
                                     style: TextStyle(
+                                      fontFamily: 'Avenir',
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -106,8 +104,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 5),
                                   child: Text(
-                                    lname,
+                                  'Name',
                                     style: TextStyle(
+                                      fontFamily: 'Avenir',
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -140,8 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              Color.fromARGB(255, 0, 0, 0),
-                              Color.fromARGB(255, 0, 0, 0)
+                              Color.fromARGB(255, 157, 0, 86),
+                              Color.fromARGB(255, 157, 0, 86)
                             ],
                           ),
                         ),
@@ -153,6 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Text(
                                 'Designation',
                                 style: TextStyle(
+                                  fontFamily: 'Avenir',
                                   color: Colors.white,
                                 ),
                               ),
@@ -160,8 +160,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
-                                designation,
+                          'Name',
                                 style: TextStyle(
+                                  fontFamily: 'Avenir',
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -192,8 +193,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              Color.fromARGB(255, 0, 0, 0),
-                              Color.fromARGB(255, 0, 0, 0)
+                              Color.fromARGB(255, 157, 0, 86),
+                              Color.fromARGB(255, 157, 0, 86)
                             ],
                           ),
                         ),
@@ -205,6 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Text(
                                 'Hospital',
                                 style: TextStyle(
+                                  fontFamily: 'Avenir',
                                   color: Colors.white,
                                 ),
                               ),
@@ -212,8 +214,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
-                                hospitalName,
+                         'Name',
                                 style: TextStyle(
+                                  fontFamily: 'Avenir',
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -244,8 +247,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              Color.fromARGB(255, 0, 0, 0),
-                              Color.fromARGB(255, 0, 0, 0)
+                              Color.fromARGB(255, 157, 0, 86),
+                              Color.fromARGB(255, 157, 0, 86)
                             ],
                           ),
                         ),
@@ -257,6 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Text(
                                 'Department',
                                 style: TextStyle(
+                                  fontFamily: 'Avenir',
                                   color: Colors.white,
                                 ),
                               ),
@@ -264,8 +268,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
-                                department,
+                       'Name',
                                 style: TextStyle(
+                                  fontFamily: 'Avenir',
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -280,8 +285,95 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+             SizedBox(height: 20),
+              // active devices
+              Container(
+      height: 130,
+      width: 380,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: Colors.grey,
+          width: 0.2,
+        ),
+        color: Colors.white,
+        boxShadow: const [
+          BoxShadow(
+            offset: Offset(5, 15),
+            color: Color.fromARGB(255, 199, 199, 199),
+            blurRadius: 20,
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        child: Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'ACTIVE DEVICE',
+                  style: TextStyle(
+                       fontFamily: 'Avenir',
+                    color: Color.fromARGB(255, 4, 75, 7),
+                    fontSize: 10,
+                    // fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, top: 15, right: 120),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'AGVA PRO',
+                        style: TextStyle(
+                             fontFamily: 'Avenir',
+                          color: Color.fromARGB(255, 58, 58, 58),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                      Text(
+                        'VENTILATOR',
+                        style: TextStyle(
+                             fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10,),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Container(
+                    height: 70,
+                    width: 90,
+                    child: Image.asset(
+                      "assets/images/agvapro.png",
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+
+     SizedBox(height: 20),
+DeviceDetails(),
             ],
           ),
+          
         ),
       ),
       drawer: Drawer(
@@ -296,9 +388,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
-                  fname,
+                  'AgVa',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
+                    color: Color.fromARGB(255, 157, 0, 86),
                     fontSize: 25,
                   ),
                 ),
@@ -329,7 +421,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {},
             ),
             ListTile(
-              leading: const Icon(Icons.task, color: Colors.black),
+              leading: const Icon(Icons.devices_other, color: Colors.black),
               title: Text(
                 'DEVICES',
                 style: TextStyle(
@@ -340,7 +432,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {},
             ),
             ListTile(
-              leading: const Icon(Icons.trending_up, color: Colors.black),
+              leading: const Icon(Icons.circle, color: Colors.black),
               title: Text(
                 'LIVE',
                 style: TextStyle(

@@ -37,28 +37,21 @@ class _SignInState extends State<SignIn> {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       try {
         var response = await http.post(
-          Uri.parse(login),
+          Uri.parse(loginUser),
           headers: {"Content-Type": "application/json"},
           body: jsonEncode({
             "email": emailController.text,
-            "password": passwordController.text,
+            "passwordHash": passwordController.text,
           }),
         );
 
-        if (response.statusCode == 200) {
-          var jsonResponse = jsonDecode(response.body);
-          // print(jsonResponse['status']);
-          if (jsonResponse['status'] == true) {
-            var myToken = jsonResponse['token'];
-            prefs.setString('token', myToken);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => HomeScreen(
-                        token: myToken,
-                      )),
-            );
-          }
+        var jsonResponse = jsonDecode(response.body);
+        print(jsonResponse);
+        if (jsonResponse['statusValue'] == 'SUCCESS') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
         } else {
           print('Invalid User Credential: ${response.statusCode}');
         }
