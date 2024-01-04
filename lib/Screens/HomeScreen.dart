@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_const, unused_import
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_const, unused_import, library_private_types_in_public_api, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -6,26 +6,33 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import '../widgets/DeviceDetails.dart';
 
 class HomeScreen extends StatefulWidget {
-  // final token;
-  const HomeScreen({ Key? key}) : super(key: key);
+  final data;
+  const HomeScreen({
+    @required this.data,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late String name;
+  late String email;
+  late String hospitalName;
+  late String userStatus;
 
   @override
   void initState() {
     super.initState();
-    // Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
+    if (widget.data != null && widget.data is String && widget.data.isNotEmpty) {
+      Map<String, dynamic> jwtDecodedData = JwtDecoder.decode(widget.data);
 
-    // email = jwtDecodedToken['email'];
-    // firstName = jwtDecodedToken['firstName'];
-    // lastName = jwtDecodedToken['lastName'];
-    // hospitalName = jwtDecodedToken['hospitalName'];
-    // designation = jwtDecodedToken['designation'];
-    // department = jwtDecodedToken['department'];
+        name = jwtDecodedData['name'];
+      email = jwtDecodedData['email'];
+      hospitalName = jwtDecodedData['hospitalName'];
+      userStatus = jwtDecodedData['userStatus'];
+    }
   }
 
   @override
@@ -69,8 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                             Color.fromARGB(255, 157, 0, 86),
-                             Color.fromARGB(255, 157, 0, 86)
+                              Color.fromARGB(255, 157, 0, 86),
+                              Color.fromARGB(255, 157, 0, 86)
                             ],
                           ),
                         ),
@@ -92,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
                                   child: Text(
-                                    'Name',
+                                    'name',
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       fontSize: 15,
@@ -104,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 5),
                                   child: Text(
-                                  'Name',
+                                    'Name',
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       fontSize: 15,
@@ -160,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
-                          'Name',
+                                'Name',
                                 style: TextStyle(
                                   fontFamily: 'Avenir',
                                   fontSize: 15,
@@ -214,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
-                         'Name',
+                                'Name',
                                 style: TextStyle(
                                   fontFamily: 'Avenir',
                                   fontSize: 15,
@@ -268,7 +275,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
-                       'Name',
+                                'Name',
                                 style: TextStyle(
                                   fontFamily: 'Avenir',
                                   fontSize: 15,
@@ -285,95 +292,98 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-             SizedBox(height: 20),
+              SizedBox(height: 20),
               // active devices
               Container(
-      height: 130,
-      width: 380,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Colors.grey,
-          width: 0.2,
-        ),
-        color: Colors.white,
-        boxShadow: const [
-          BoxShadow(
-            offset: Offset(5, 15),
-            color: Color.fromARGB(255, 199, 199, 199),
-            blurRadius: 20,
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'ACTIVE DEVICE',
-                  style: TextStyle(
-                       fontFamily: 'Avenir',
-                    color: Color.fromARGB(255, 4, 75, 7),
-                    fontSize: 10,
-                    // fontWeight: FontWeight.bold,
+                height: 130,
+                width: 380,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 0.2,
                   ),
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(
+                      offset: Offset(5, 15),
+                      color: Color.fromARGB(255, 199, 199, 199),
+                      blurRadius: 20,
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, top: 15, right: 120),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+                  child: Row(
                     children: [
-                      Text(
-                        'AGVA PRO',
-                        style: TextStyle(
-                             fontFamily: 'Avenir',
-                          color: Color.fromARGB(255, 58, 58, 58),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'ACTIVE DEVICE',
+                            style: TextStyle(
+                              fontFamily: 'Avenir',
+                              color: Color.fromARGB(255, 4, 75, 7),
+                              fontSize: 10,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, top: 15, right: 120),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'AGVA PRO',
+                                  style: TextStyle(
+                                    fontFamily: 'Avenir',
+                                    color: Color.fromARGB(255, 58, 58, 58),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                SizedBox(height: 2),
+                                Text(
+                                  'VENTILATOR',
+                                  style: TextStyle(
+                                    fontFamily: 'Avenir',
+                                    color:
+                                        const Color.fromARGB(255, 65, 65, 65),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 2),
-                      Text(
-                        'VENTILATOR',
-                        style: TextStyle(
-                             fontFamily: 'Avenir',
-                          color: const Color.fromARGB(255, 65, 65, 65),
-                          fontSize: 12,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 10,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                              height: 70,
+                              width: 90,
+                              child: Image.asset(
+                                "assets/images/agvapro.png",
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10,),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    height: 70,
-                    width: 90,
-                    child: Image.asset(
-                      "assets/images/agvapro.png",
-                    ),
-                  ),
-                ],
               ),
-            ),
-          ],
-        ),
-      ),
-    ),
 
-     SizedBox(height: 20),
-DeviceDetails(),
+              SizedBox(height: 20),
+              DeviceDetails(),
             ],
           ),
-          
         ),
       ),
       drawer: Drawer(

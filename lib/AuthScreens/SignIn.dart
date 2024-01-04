@@ -33,33 +33,40 @@ class _SignInState extends State<SignIn> {
     prefs = await SharedPreferences.getInstance();
   }
 
-  void signIn() async {
-    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      try {
-        var response = await http.post(
-          Uri.parse(loginUser),
-          headers: {"Content-Type": "application/json"},
-          body: jsonEncode({
-            "email": emailController.text,
-            "passwordHash": passwordController.text,
-          }),
-        );
+void signIn() async {
+  if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+    try {
+      var response = await http.post(
+        Uri.parse(loginUser),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({
+          "email": emailController.text,
+          "passwordHash": passwordController.text,
+        }),
+      );
 
-        var jsonResponse = jsonDecode(response.body);
-        print(jsonResponse);
-        if (jsonResponse['statusValue'] == 'SUCCESS') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
-          );
-        } else {
-          print('Invalid User Credential: ${response.statusCode}');
-        }
-      } catch (e) {
-        print('Error: $e');
+      var jsonResponse = jsonDecode(response.body);
+      // print(jsonResponse);
+      if (jsonResponse['statusValue'] == 'SUCCESS') {
+        var myData = jsonResponse['data'];
+        prefs.setString('data', jsonEncode(myData));
+        print(jsonResponse['data']);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(
+              data: myData,
+            ),
+          ),
+        );
+      } else {
+        print('Invalid User Credential: ${response.statusCode}');
       }
+    } catch (e) {
+      print('Error: $e');
     }
   }
+}
 
   @override
   Widget build(BuildContext context) {

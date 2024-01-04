@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors,  missing_required_param
 
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'AuthScreens/SignIn.dart';
 import 'AuthScreens/SignUp.dart';
@@ -10,13 +11,13 @@ import 'Screens/HomeScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  runApp(MyApp(token: prefs.getString('token')));
+  runApp(MyApp(data: prefs.getString('data')));
 }
 
 class MyApp extends StatelessWidget {
-  final token;
+  final data;
   const MyApp({
-    @required this.token,
+    @required this.data,
     Key? key,
   }) : super(key: key);
 
@@ -32,7 +33,9 @@ class MyApp extends StatelessWidget {
         "/signup": (context) => SignUp(),
         "/signin": (context) => SignIn(),
         "/splash": (context) => SplashScreen(),
-        "/home": (context) => HomeScreen(),
+      "/home": (context) => HomeScreen(
+          data: JwtDecoder.decode(data),
+        ),
       },
     );
   }
