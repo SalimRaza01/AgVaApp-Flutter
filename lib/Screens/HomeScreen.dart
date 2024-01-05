@@ -1,16 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_const, unused_import, library_private_types_in_public_api, prefer_typing_uninitialized_variables
-
 import 'package:flutter/material.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
-
 import '../widgets/DeviceDetails.dart';
 
 class HomeScreen extends StatefulWidget {
-  final data;
-  const HomeScreen({
-    @required this.data,
-    Key? key,
-  }) : super(key: key);
+  final Map<String, dynamic> data;
+
+  HomeScreen(this.data);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -18,21 +13,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String name;
-  late String email;
   late String hospitalName;
-  late String userStatus;
 
   @override
   void initState() {
     super.initState();
-    if (widget.data != null && widget.data is String && widget.data.isNotEmpty) {
-      Map<String, dynamic> jwtDecodedData = JwtDecoder.decode(widget.data);
-
-        name = jwtDecodedData['name'];
-      email = jwtDecodedData['email'];
-      hospitalName = jwtDecodedData['hospitalName'];
-      userStatus = jwtDecodedData['userStatus'];
-    }
+    name = widget.data['name'];
+    hospitalName = widget.data['hospitalName'];
   }
 
   @override
@@ -99,19 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
                                   child: Text(
-                                    'name',
-                                    style: TextStyle(
-                                      fontFamily: 'Avenir',
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    'Name',
+                                    '$name',
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       fontSize: 15,
@@ -221,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
-                                'Name',
+                                '$hospitalName',
                                 style: TextStyle(
                                   fontFamily: 'Avenir',
                                   fontSize: 15,
@@ -467,5 +442,4 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-}
+  }}

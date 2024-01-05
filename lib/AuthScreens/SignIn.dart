@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -33,40 +32,41 @@ class _SignInState extends State<SignIn> {
     prefs = await SharedPreferences.getInstance();
   }
 
-void signIn() async {
-  if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-    try {
-      var response = await http.post(
-        Uri.parse(loginUser),
-        headers: {"Content-Type": "application/json"},
-        body: jsonEncode({
-          "email": emailController.text,
-          "passwordHash": passwordController.text,
-        }),
-      );
-
-      var jsonResponse = jsonDecode(response.body);
-      // print(jsonResponse);
-      if (jsonResponse['statusValue'] == 'SUCCESS') {
-        var myData = jsonResponse['data'];
-        prefs.setString('data', jsonEncode(myData));
-        print(jsonResponse['data']);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(
-              data: myData,
-            ),
-          ),
+  void signIn() async {
+    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+      try {
+        var response = await http.post(
+          Uri.parse(loginUser),
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode({
+            "email": emailController.text,
+            "passwordHash": passwordController.text,
+          }),
         );
-      } else {
-        print('Invalid User Credential: ${response.statusCode}');
+
+        var jsonResponse = jsonDecode(response.body);
+        if (jsonResponse['statusValue'] == 'SUCCESS') {
+          print(jsonResponse);
+          var data = jsonResponse['data'];
+          var name = data['name'];
+          var hospitalName = data['hospitalName'];
+          print('Frontend Response : Name: $name');
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeScreen({
+                  'name': name,
+                  'hospitalName': hospitalName,
+                }),
+              ));
+        } else {
+          print('Invalid User Credential: ${response.statusCode}');
+        }
+      } catch (e) {
+        print('Error: $e');
       }
-    } catch (e) {
-      print('Error: $e');
     }
   }
-}
 
   @override
   Widget build(BuildContext context) {
