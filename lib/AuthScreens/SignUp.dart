@@ -2,7 +2,7 @@
 
 import 'package:agva_app/AuthScreens/SignIn.dart';
 import 'package:agva_app/Screens/RegDone.dart';
-import 'package:agva_app/Screens/TandCScreen.dart';
+import 'package:agva_app/Screens/TermsCondition.dart';
 import 'package:agva_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

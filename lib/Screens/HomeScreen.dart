@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_const, unused_import, library_private_types_in_public_api, prefer_typing_uninitialized_variables
+import 'package:agva_app/AuthScreens/SignIn.dart';
+import 'package:agva_app/Screens/DeviceDetails.dart';
 import 'package:flutter/material.dart';
-import '../widgets/DeviceDetails.dart';
+import '../widgets/ActiveDevices.dart';
 
 class HomeScreen extends StatefulWidget {
   final Map<String, dynamic> data;
@@ -356,11 +358,21 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               SizedBox(height: 20),
-              DeviceDetails(),
+GestureDetector(
+                onTap: () {
+                  // Navigate to the new screen when DeviceDetails is tapped
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DeviceDetails()),
+                  );
+                },
+                child: ActiveDevices(),
+              ),
             ],
           ),
         ),
       ),
+
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -441,5 +453,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-    );
-  }}
+          );
+      }
+}
