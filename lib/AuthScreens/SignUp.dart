@@ -5,6 +5,7 @@ import 'package:agva_app/Screens/RegDone.dart';
 import 'package:agva_app/Screens/TandCScreen.dart';
 import 'package:agva_app/config.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -17,16 +18,30 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   // GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool isPhoneNumberFilled = false;
   bool passwordVisible = false;
   bool _isNotValidate = false;
   bool first = false;
 
-  String dropdownvalue = 'Select Speciality';
-  var items = [
+  String specialitydropdown = 'Select Speciality';
+  var specialityItems = [
     'Select Speciality',
-    'Neoro',
+    'Neuro',
     'Anesthesiologist',
     'Nurse',
+  ];
+
+  String designationdropdown = 'Select Designation';
+  var designationItems = [
+    'Select Designation',
+    'Dr.',
+    'Dr. Prof.',
+    'Prof.',
+    'Nurse',
+    'Support Staff',
+    'Engineer',
+    'Admin',
+    'Owner',
   ];
 
   TextEditingController firstNameController = TextEditingController();
@@ -121,6 +136,55 @@ class _SignUpState extends State<SignUp> {
                           height: 30,
                         ),
                         Padding(
+                          padding: const EdgeInsets.only(right: 30, left: 35),
+                          child: Container(
+                            width: 330,
+                            decoration: BoxDecoration(),
+                            child: DropdownButtonFormField(
+                              value: designationdropdown,
+                              icon: const Icon(Icons.keyboard_arrow_down),
+                              iconSize: 24,
+                              elevation: 16,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                              ),
+                              isDense: true,
+                              decoration: InputDecoration(
+                                icon: FaIcon(
+                                  FontAwesomeIcons.clipboardUser,
+                                  size: 20,
+                                ),
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 0,
+                                  vertical: 15,
+                                ),
+                                border: InputBorder.none,
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.black87,
+                                    width: 0.7,
+                                  ),
+                                ),
+                              ),
+                              items: designationItems.map((String item) {
+                                return DropdownMenuItem(
+                                  value: item,
+                                  child: Text(item),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  designationdropdown = newValue!;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Padding(
                           padding: const EdgeInsets.only(right: 30, left: 30),
                           child: TextFormField(
                             controller: firstNameController,
@@ -166,9 +230,9 @@ class _SignUpState extends State<SignUp> {
                             controller: hospitalNameController,
                             style: TextStyle(color: Colors.black87),
                             decoration: InputDecoration(
-                              icon: Icon(
-                                Icons.local_hospital,
-                                color: Colors.black87,
+                              icon: FaIcon(
+                                FontAwesomeIcons.squareH,
+                                size: 20,
                               ),
                               hintText: 'Enter Hospital Name',
                               errorText:
@@ -186,9 +250,9 @@ class _SignUpState extends State<SignUp> {
                             controller: designationController,
                             style: TextStyle(color: Colors.black87),
                             decoration: InputDecoration(
-                              icon: Icon(
-                                Icons.person,
-                                color: Colors.black87,
+                              icon: FaIcon(
+                                FontAwesomeIcons.userDoctor,
+                                size: 20,
                               ),
                               hintText: 'Enter your Designation',
                               errorText:
@@ -206,9 +270,9 @@ class _SignUpState extends State<SignUp> {
                             controller: departmentController,
                             style: TextStyle(color: Colors.black87),
                             decoration: InputDecoration(
-                              icon: Icon(
-                                Icons.person,
-                                color: Colors.black87,
+                              icon: FaIcon(
+                                FontAwesomeIcons.hospitalUser,
+                                size: 20,
                               ),
                               hintText: 'Enter your Department',
                               errorText:
@@ -218,60 +282,56 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 30, left: 30),
+                          padding: const EdgeInsets.only(right: 30, left: 35),
                           child: Container(
-                            width: 300,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color.fromARGB(255, 255, 255, 255),
-                                  Color.fromARGB(255, 255, 255, 255)
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
+                            width: 330,
+                            decoration: BoxDecoration(),
+                            child: DropdownButtonFormField(
+                              value: specialitydropdown,
+                              icon: const Icon(Icons.keyboard_arrow_down),
+                              iconSize: 24,
+                              elevation: 16,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
                               ),
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.3),
-                                  spreadRadius: 3,
-                                  blurRadius: 20,
-                                  offset: Offset(0, 3),
+                              isDense: true,
+                              decoration: InputDecoration(
+                                icon: FaIcon(
+                                  FontAwesomeIcons.clipboardUser,
+                                  size: 20,
                                 ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                DropdownButton(
-                                  value: dropdownvalue,
-                                  icon: const Icon(Icons.keyboard_arrow_down),
-                                  underline: SizedBox(),
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 0,
+                                  vertical: 15,
+                                ),
+                                border: InputBorder.none,
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.black87,
+                                    width: 0.7,
                                   ),
-                                  items: items.map((String items) {
-                                    return DropdownMenuItem(
-                                      value: items,
-                                      child: Text(items),
-                                    );
-                                  }).toList(),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      dropdownvalue = newValue!;
-                                    });
-                                  },
                                 ),
-                              ],
+                              ),
+                              items: specialityItems.map((String item) {
+                                return DropdownMenuItem(
+                                  value: item,
+                                  child: Text(item),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  specialitydropdown = newValue!;
+                                });
+                              },
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 30,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 30, left: 30),
@@ -280,10 +340,58 @@ class _SignUpState extends State<SignUp> {
                             initialCountryCode: 'IN',
                             style: TextStyle(color: Colors.black87),
                             decoration: InputDecoration(
+                              icon: FaIcon(
+                                FontAwesomeIcons.phone,
+                                size: 20,
+                              ),
                               hintText: 'Contact Number',
                               errorText:
                                   _isNotValidate ? "Enter Proper Info" : null,
                               hintStyle: TextStyle(color: Colors.black45),
+                            ),
+                            onChanged: (phone) {
+                              setState(() {
+                             isPhoneNumberFilled = phone.number.isNotEmpty;
+                              });
+                            },
+                          ),
+                        ),
+                           if (isPhoneNumberFilled)
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(15, 0, 22, 0),
+                          child: Container(
+                            height: 45,
+                            width: 100,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    spreadRadius: 3,
+                                    blurRadius: 20,
+                                    offset: Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                                color: Colors.white,
+                                gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      Color.fromARGB(255, 218, 0, 138),
+                                      Color.fromARGB(255, 142, 0, 90)
+                                    ])),
+                            child: TextButton(
+                               onPressed: () {
+                            // Implement your verification logic here
+                            print('Verify button pressed');
+                          },
+                              style: TextButton.styleFrom(),
+                              child: Text(
+                                "Verify",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
                             ),
                           ),
                         ),
@@ -327,8 +435,8 @@ class _SignUpState extends State<SignUp> {
                               hintStyle: TextStyle(color: Colors.black45),
                               suffixIcon: IconButton(
                                 icon: Icon(passwordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
                                 onPressed: () {
                                   setState(
                                     () {
@@ -360,8 +468,8 @@ class _SignUpState extends State<SignUp> {
                               hintStyle: TextStyle(color: Colors.black45),
                               suffixIcon: IconButton(
                                 icon: Icon(passwordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
                                 onPressed: () {
                                   setState(
                                     () {

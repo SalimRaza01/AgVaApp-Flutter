@@ -36,6 +36,7 @@ dependencies:
   shared_preferences:
   flutter_slidable:
   intl_phone_field: ^3.1.0
+  font_awesome_flutter:
   
   
 
