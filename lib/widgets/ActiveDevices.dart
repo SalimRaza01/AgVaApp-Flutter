@@ -21,7 +21,7 @@ class ActiveDevices extends StatelessWidget {
             );
           },
           child: Padding(
-            padding: const EdgeInsets.only(top:10),
+            padding: const EdgeInsets.only(top: 10),
             child: Container(
               height: 130,
               width: 380,
@@ -56,8 +56,8 @@ class ActiveDevices extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsets.only(left: 15, top: 15, right: 50),
+                          padding: const EdgeInsets.only(
+                              left: 15, top: 15, right: 50),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -95,7 +95,7 @@ class ActiveDevices extends StatelessWidget {
                             height: 60,
                             width: 80,
                             child: Image.asset(
-                              "assets/images/agvapro.png",
+                              getImagePath(deviceData['deviceId']),
                             ),
                           ),
                         ],
@@ -109,5 +109,16 @@ class ActiveDevices extends StatelessWidget {
         );
       }).toList(),
     );
+  }
+
+  String getImagePath(String deviceId) {
+    switch (deviceId) {
+      case '746ec924d3845797':
+        return "assets/images/Suction.png";
+      case '2ab16f2edef8891a':
+        return "assets/images/agvapro.png";
+      default:
+        return "assets/images/DVT.png";
+    }
   }
 }
