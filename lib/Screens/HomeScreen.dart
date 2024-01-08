@@ -301,24 +301,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
+              if (deviceDataList.isNotEmpty)
+              ActiveDevices(deviceDataList),
+                      SizedBox(height: 20),
+              
               // active devices
-              SizedBox(height: 20),
-
-              GestureDetector(
-                onTap: () {
-                  if (deviceDataList.isNotEmpty) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                    builder: (context) => DeviceDetails(deviceDataList[0]),
-                      ),
-                    );
-                  }
-                },
-                child: ActiveDevices(deviceDataList),
-              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     if (deviceDataList.isNotEmpty) {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //       builder: (context) => DeviceDetails(deviceDataList[0]),
+              //         ),
+              //       );
+              //     }
+              //   },
+                
+              //   child: ActiveDevices(deviceDataList),
+                
+              // ),
+              
             ],
+            
           ),
         ),
       ),
