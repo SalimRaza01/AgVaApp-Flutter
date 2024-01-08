@@ -50,7 +50,7 @@ class ActiveDevices extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            deviceData['deviceId'] ?? 'N/A',
+                            deviceData['deviceId'],
                             style: TextStyle(
                               fontFamily: 'Avenir',
                               color: Color.fromARGB(255, 58, 58, 58),

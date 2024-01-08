@@ -1,173 +1,25 @@
-              // Container(
-              //   height: 130,
-              //   width: 380,
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(16),
-              //     border: Border.all(
-              //       color: Colors.grey,
-              //       width: 0.2,
-              //     ),
-              //     color: Colors.white,
-              //     boxShadow: const [
-              //       BoxShadow(
-              //         offset: Offset(5, 15),
-              //         color: Color.fromARGB(255, 199, 199, 199),
-              //         blurRadius: 20,
-              //       ),
-              //     ],
-              //   ),
-              //   child: Padding(
-              //     padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-              //     child: Row(
-              //       children: [
-              //         Column(
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-              //           children: [
-              //             Text(
-              //               'message',
-              //               style: TextStyle(
-              //                 fontFamily: 'Avenir',
-              //                 color: Color.fromARGB(255, 4, 75, 7),
-              //                 fontSize: 10,
-              //                 // fontWeight: FontWeight.bold,
-              //               ),
-              //             ),
-              //             Padding(
-              //               padding: const EdgeInsets.only(
-              //                   left: 15, top: 15, right: 120),
-              //               child: Column(
-              //                 crossAxisAlignment: CrossAxisAlignment.start,
-              //                 children: [
-              //                   Text(
-              //                     'AGVA PRO',
-              //                     style: TextStyle(
-              //                       fontFamily: 'Avenir',
-              //                       color: Color.fromARGB(255, 58, 58, 58),
-              //                       fontSize: 18,
-              //                       fontWeight: FontWeight.w500,
-              //                     ),
-              //                   ),
-              //                   SizedBox(height: 2),
-              //                   Text(
-              //                     'VENTILATOR',
-              //                     style: TextStyle(
-              //                       fontFamily: 'Avenir',
-              //                       color:
-              //                           const Color.fromARGB(255, 65, 65, 65),
-              //                       fontSize: 12,
-              //                     ),
-              //                   ),
-              //                 ],
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //         Padding(
-              //           padding: const EdgeInsets.only(
-              //             top: 10,
-              //           ),
-              //           child: Column(
-              //             crossAxisAlignment: CrossAxisAlignment.end,
-              //             children: [
-              //               Container(
-              //                 height: 70,
-              //                 width: 90,
-              //                 child: Image.asset(
-              //                   "assets/images/agvapro.png",
-              //                 ),
-              //               ),
-              //             ],
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-
-
-
-                            // SingleChildScrollView(
-              //   child: Container(
-              //     height: 50,
-              //     width: 380,
-              //     child: ListView.builder(
-              //       itemCount: devicedata.length,
-              //       itemBuilder: (context, index) {
-              //         var device = devicedata[index];
-              //         return GestureDetector(
-              //           onTap: () {
-              //             // Navigate to the new screen when DeviceDetails is tapped
-              //             Navigator.push(
-              //               context,
-              //               MaterialPageRoute(
-              //                 builder: (context) => DeviceDetails(
-              //                   {
-              //                     'token': token,
-              //                     'hospitalName': hospitalName,
-              //                   },
-              //                 ),
-              //               ),
-              //             );
-              //           },
-              //           child: ActiveDevices(
-              //                                         deviceName: device['deviceId'] ?? '',
-              //               deviceType: device['health'] ?? '',
-              //               isActive: device['message'] == 'ACTIVE',
-              //               ),
-              //         );
-              //       },
-              //     ),
-              //   ),
-              // ),
-
-
-
-
-
-
-              // ignore_for_file: unused_import, unused_local_variable
+// ignore_for_file: unused_import, unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class DeviceDetails extends StatefulWidget {
-  // final Map<String, dynamic> data;
-  // DeviceDetails(this.data);
+  final List<Map<String, dynamic>> deviceData;
+
+  DeviceDetails(this.deviceData);
 
   @override
   State<DeviceDetails> createState() => _DeviceDetailsState();
 }
 
 class _DeviceDetailsState extends State<DeviceDetails> {
-  // late String token;
-  // late String hospitalName;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   hospitalName = widget.data['hospitalName'];
-  //   token = widget.data['token'];
-  //   fetchDevicesByHospital();
-  // }
-
-  // void fetchDevicesByHospital() async {
-  //   var response = await http.get(
-  //     Uri.parse(
-  //         'http://52.63.221.128:8000/devices/get-devices-by-hospital/$hospitalName'),
-  //     headers: {
-  //       "Authorization": token,
-  //     },
-  //   );
-  //   var jsonResponse = jsonDecode(response.body);
-  //   if (jsonResponse['statusValue'] == 'SUCCESS') {
-  //     // var data = jsonResponse['data'];
-  //     //     print('Device data : $data');
-  //   } else {
-  //     print('Invalid User Credential: ${response.statusCode}');
-  //   }
-  // }
-
+  @override
+  void initState() {
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -205,7 +57,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Device ID',
+                                  'deviceId',
                                   style: TextStyle(
                                     fontFamily: 'Avenir',
                                     color: Color.fromARGB(255, 58, 58, 58),

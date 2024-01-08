@@ -19,8 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late String name;
   late String hospitalName;
   late String token;
-  // List<Map<String, dynamic>> deviceData = [];
-    List<Map<String, dynamic>> deviceDataList = [];
+  List<Map<String, dynamic>> deviceDataList = [];
 
   @override
   void initState() {
@@ -32,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     fetchDevicesByHospital();
   }
 
-    void fetchDevicesByHospital() async {
+  void fetchDevicesByHospital() async {
     var response = await http.get(
       Uri.parse(
           'http://52.63.221.128:8000/devices/get-devices-by-hospital/$hospitalName'),
@@ -43,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var jsonResponse = jsonDecode(response.body);
     if (jsonResponse['statusValue'] == 'SUCCESS') {
       var devicesList = jsonResponse['data'];
+       print('Device List: $devicesList');
 
       for (var deviceData in devicesList) {
         var deviceId = deviceData['deviceId'];
@@ -306,19 +306,18 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 20),
 
               GestureDetector(
-  onTap: () {
-    if (deviceDataList.isNotEmpty) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => DeviceDetails(deviceDataList),
-        ),
-      );
-    }
-  },
-  child: ActiveDevices(deviceDataList),
-),
-
+                onTap: () {
+                  if (deviceDataList.isNotEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DeviceDetails(deviceDataList),
+                      ),
+                    );
+                  }
+                },
+                child: ActiveDevices(deviceDataList),
+              ),
             ],
           ),
         ),

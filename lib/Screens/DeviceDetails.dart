@@ -18,10 +18,8 @@ class _DeviceDetailsState extends State<DeviceDetails> {
   @override
   void initState() {
     super.initState();
-    var deviceId = widget.deviceData;
   }
-
-
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,7 +57,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                'deviceData',
+                                  'deviceId',
                                   style: TextStyle(
                                     fontFamily: 'Avenir',
                                     color: Color.fromARGB(255, 58, 58, 58),
