@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_const, unused_import, library_private_types_in_public_api, prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_const, unused_import, library_private_types_in_public_api, prefer_typing_uninitialized_variables, unused_local_variable
+import 'dart:convert';
 import 'package:agva_app/AuthScreens/SignIn.dart';
 import 'package:agva_app/Screens/DeviceDetails.dart';
 import 'package:flutter/material.dart';
 import '../widgets/ActiveDevices.dart';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   final Map<String, dynamic> data;
@@ -16,12 +18,36 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late String name;
   late String hospitalName;
+  late String token;
+  List<Map<String, dynamic>> devices = [];
 
   @override
   void initState() {
     super.initState();
     name = widget.data['name'];
     hospitalName = widget.data['hospitalName'];
+    token = widget.data['token'];
+    print('Frontend Response : Token: $token');
+    fetchDevicesByHospital();
+  }
+
+  void fetchDevicesByHospital() async {
+    var response = await http.get(
+      Uri.parse(
+          'http://52.63.221.128:8000/devices/get-devices-by-hospital/$hospitalName'),
+      headers: {
+        "Authorization": token,
+      },
+    );
+    var jsonResponse = jsonDecode(response.body);
+    if (jsonResponse['statusValue'] == 'SUCCESS') {
+      print(jsonResponse);
+      var data = jsonResponse['data'];
+      var inactive = data['message'];
+      print('InActive Devices: $inactive');
+    } else {
+      print('Invalid User Credential: ${response.statusCode}');
+    }
   }
 
   @override
@@ -297,7 +323,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'ACTIVE DEVICE',
+                            'message',
                             style: TextStyle(
                               fontFamily: 'Avenir',
                               color: Color.fromARGB(255, 4, 75, 7),
@@ -358,7 +384,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               SizedBox(height: 20),
-GestureDetector(
+              GestureDetector(
                 onTap: () {
                   // Navigate to the new screen when DeviceDetails is tapped
                   Navigator.push(
@@ -372,7 +398,6 @@ GestureDetector(
           ),
         ),
       ),
-
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -453,6 +478,6 @@ GestureDetector(
           ],
         ),
       ),
-          );
-      }
+    );
+  }
 }

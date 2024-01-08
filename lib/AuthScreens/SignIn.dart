@@ -50,13 +50,16 @@ class _SignInState extends State<SignIn> {
           var data = jsonResponse['data'];
           var name = data['name'];
           var hospitalName = data['hospitalName'];
+          var token = data['token'];
           print('Frontend Response : Name: $name');
+        
           Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => HomeScreen({
                   'name': name,
                   'hospitalName': hospitalName,
+                  'token': token
                 }),
               ));
         } else {

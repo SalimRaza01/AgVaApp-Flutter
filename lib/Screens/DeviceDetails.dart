@@ -1,11 +1,19 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: unused_import
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class DeviceDetails extends StatelessWidget {
-  const DeviceDetails({super.key});
+class DeviceDetails extends StatefulWidget {
 
   @override
+  State<DeviceDetails> createState() => _DeviceDetailsState();
+}
+
+class _DeviceDetailsState extends State<DeviceDetails> {
+
+
+@override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(),
