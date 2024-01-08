@@ -19,7 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
   late String name;
   late String hospitalName;
   late String token;
-  List<Map<String, dynamic>> devices = [];
+  // List<Map<String, dynamic>> deviceData = [];
+    List<Map<String, dynamic>> deviceDataList = [];
 
   @override
   void initState() {
@@ -27,11 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
     name = widget.data['name'];
     hospitalName = widget.data['hospitalName'];
     token = widget.data['token'];
-    print('Frontend Response : Token: $token');
+    // print('Frontend Response : Token: $token');
     fetchDevicesByHospital();
   }
 
-  void fetchDevicesByHospital() async {
+    void fetchDevicesByHospital() async {
     var response = await http.get(
       Uri.parse(
           'http://52.63.221.128:8000/devices/get-devices-by-hospital/$hospitalName'),
@@ -41,10 +42,15 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     var jsonResponse = jsonDecode(response.body);
     if (jsonResponse['statusValue'] == 'SUCCESS') {
-      print(jsonResponse);
-      var data = jsonResponse['data'];
-      var inactive = data['message'];
-      print('InActive Devices: $inactive');
+      var devicesList = jsonResponse['data'];
+
+      for (var deviceData in devicesList) {
+        var deviceId = deviceData['deviceId'];
+        print('Device ID: $deviceId');
+        setState(() {
+          deviceDataList.add(deviceData);
+        });
+      }
     } else {
       print('Invalid User Credential: ${response.statusCode}');
     }
@@ -297,103 +303,22 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 20),
               // active devices
-              Container(
-                height: 130,
-                width: 380,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 0.2,
-                  ),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      offset: Offset(5, 15),
-                      color: Color.fromARGB(255, 199, 199, 199),
-                      blurRadius: 20,
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'message',
-                            style: TextStyle(
-                              fontFamily: 'Avenir',
-                              color: Color.fromARGB(255, 4, 75, 7),
-                              fontSize: 10,
-                              // fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 15, top: 15, right: 120),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'AGVA PRO',
-                                  style: TextStyle(
-                                    fontFamily: 'Avenir',
-                                    color: Color.fromARGB(255, 58, 58, 58),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                SizedBox(height: 2),
-                                Text(
-                                  'VENTILATOR',
-                                  style: TextStyle(
-                                    fontFamily: 'Avenir',
-                                    color:
-                                        const Color.fromARGB(255, 65, 65, 65),
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 10,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Container(
-                              height: 70,
-                              width: 90,
-                              child: Image.asset(
-                                "assets/images/agvapro.png",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
               SizedBox(height: 20),
+
               GestureDetector(
-                onTap: () {
-                  // Navigate to the new screen when DeviceDetails is tapped
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DeviceDetails()),
-                  );
-                },
-                child: ActiveDevices(),
-              ),
+  onTap: () {
+    if (deviceDataList.isNotEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DeviceDetails(deviceDataList),
+        ),
+      );
+    }
+  },
+  child: ActiveDevices(deviceDataList),
+),
+
             ],
           ),
         ),

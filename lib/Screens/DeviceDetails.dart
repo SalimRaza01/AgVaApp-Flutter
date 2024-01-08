@@ -1,10 +1,13 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class DeviceDetails extends StatefulWidget {
+  final List<Map<String, dynamic>> deviceData;
+
+  DeviceDetails(this.deviceData);
 
   @override
   State<DeviceDetails> createState() => _DeviceDetailsState();
@@ -12,8 +15,14 @@ class DeviceDetails extends StatefulWidget {
 
 class _DeviceDetailsState extends State<DeviceDetails> {
 
+  @override
+  void initState() {
+    super.initState();
+    var deviceId = widget.deviceData;
+  }
 
-@override
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(),
@@ -50,7 +59,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Device ID',
+                                'deviceData',
                                   style: TextStyle(
                                     fontFamily: 'Avenir',
                                     color: Color.fromARGB(255, 58, 58, 58),
