@@ -311,7 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DeviceDetails(deviceDataList),
+                    builder: (context) => DeviceDetails(deviceDataList[0]),
                       ),
                     );
                   }

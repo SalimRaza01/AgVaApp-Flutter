@@ -4,21 +4,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class DeviceDetails extends StatefulWidget {
-  final List<Map<String, dynamic>> deviceData;
+class DeviceDetails extends StatelessWidget {
+    final Map<String, dynamic> deviceData;
 
   DeviceDetails(this.deviceData);
-
-  @override
-  State<DeviceDetails> createState() => _DeviceDetailsState();
-}
-
-class _DeviceDetailsState extends State<DeviceDetails> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
   
   @override
   Widget build(BuildContext context) {
@@ -57,7 +46,8 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'deviceId',
+                                  'deviceId:',
+                                  // 'deviceId',
                                   style: TextStyle(
                                     fontFamily: 'Avenir',
                                     color: Color.fromARGB(255, 58, 58, 58),
@@ -67,7 +57,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  'Running Status',
+                                  'Running Status:',
                                   style: TextStyle(
                                     fontFamily: 'Avenir',
                                     color: Color.fromARGB(255, 58, 58, 58),
@@ -76,7 +66,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  'Hours',
+                                  'Hours:',
                                   style: TextStyle(
                                     fontFamily: 'Avenir',
                                     color:
@@ -86,7 +76,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  'Total Hours',
+                                  'Total Hours:',
                                   style: TextStyle(
                                     fontFamily: 'Avenir',
                                     color:
@@ -96,7 +86,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  'Health',
+                                  'Health:',
                                   style: TextStyle(
                                     fontFamily: 'Avenir',
                                     color:
@@ -118,12 +108,12 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 30),
+                              padding: const EdgeInsets.only(left: 80),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    '45V54BV5S',
+                                     '${deviceData['deviceId']}',
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       color: Color.fromARGB(255, 58, 58, 58),
@@ -133,7 +123,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    'Active',
+                                  '${deviceData['message']}',
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       color: Color.fromARGB(255, 46, 105, 7),
@@ -143,7 +133,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    '01:55:45',
+                              '${deviceData['last_hours']}',
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       color: Color.fromARGB(255, 58, 58, 58),
@@ -153,7 +143,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    '05:89:12',
+                                  '${deviceData['total_hours']}',
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       color: Color.fromARGB(255, 58, 58, 58),
@@ -163,7 +153,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    'Good',
+                                '${deviceData['health']}',
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       color: Color.fromARGB(255, 58, 58, 58),
@@ -173,7 +163,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    'A-1 Sector 83 Noida(U.P.)',
+                                '${deviceData['address']}',
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       color: Color.fromARGB(255, 58, 58, 58),
