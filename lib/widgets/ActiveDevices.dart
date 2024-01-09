@@ -116,7 +116,9 @@ class ActiveDevices extends StatelessWidget {
       case '746ec924d3845797':
         return "assets/images/Suction.png";
       case '2ab16f2edef8891a':
-        return "assets/images/agvapro.png";
+        return "assets/images/AgVaPro.png";
+              case '2ab16f2edef8891a':
+        return "assets/images/AgVaPro.png";
       default:
         return "assets/images/DVT.png";
     }
