@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:agva_app/AuthScreens/SignIn.dart';
 import 'package:agva_app/Screens/DeviceDetails.dart';
 import 'package:flutter/material.dart';
+import '../config.dart';
 import '../widgets/ActiveDevices.dart';
 import 'package:http/http.dart' as http;
 
@@ -33,8 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void fetchDevicesByHospital() async {
     var response = await http.get(
-      Uri.parse(
-          'http://52.63.221.128:8000/devices/get-devices-by-hospital/$hospitalName'),
+     Uri.parse('$getDevicesByHospital/$hospitalName'),
       headers: {
         "Authorization": token,
       },
