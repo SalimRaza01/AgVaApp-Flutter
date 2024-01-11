@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import '../widgets/BtnWidget.dart';
 import '../widgets/MDWidget.dart';
 
-class MonitorData extends StatefulWidget {
-  @override
-  State<MonitorData> createState() => _MonitorDataState();
-}
-class _MonitorDataState extends State<MonitorData> {
+class MonitorData extends StatelessWidget {
+  final Map<String, dynamic> deviceData;
 
+  MonitorData(this.deviceData);
 
   @override
   Widget build(BuildContext context) {
@@ -124,53 +122,52 @@ class _MonitorDataState extends State<MonitorData> {
                             ),
                             //Make it ListView
                             Padding(
-                             padding: const EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 30, right: 50, top: 10),
                               child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                     'asd',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color.fromARGB(255, 58, 58, 58),
-                                      ),
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    '${deviceData['deviceId']}',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 58, 58, 58),
                                     ),
-                                    Text(
-                                      'Message',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color.fromARGB(255, 58, 58, 58),
-                                      ),
+                                  ),
+                                  Text(
+                                    'Message',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 58, 58, 58),
                                     ),
-                                    Text(
-                                      'Type',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color.fromARGB(255, 58, 58, 58),
-                                      ),
+                                  ),
+                                  Text(
+                                    'Type',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 58, 58, 58),
                                     ),
-                                    Text(
-                                      'Data',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color.fromARGB(255, 58, 58, 58),
-                                      ),
+                                  ),
+                                  Text(
+                                    'Data',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 58, 58, 58),
                                     ),
-                                    Text(
-                                      'Time',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color.fromARGB(255, 58, 58, 58),
-                                      ),
+                                  ),
+                                  Text(
+                                    'Time',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 58, 58, 58),
                                     ),
-                                  ],
-                                ),
-                                
+                                  ),
+                                ],
+                              ),
                             ),
-                                SizedBox(
+                            SizedBox(
                               height: 10,
                             ),
                             Container(

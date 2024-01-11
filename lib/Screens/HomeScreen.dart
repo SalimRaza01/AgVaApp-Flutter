@@ -28,27 +28,26 @@ class _HomeScreenState extends State<HomeScreen> {
     name = widget.data['name'];
     hospitalName = widget.data['hospitalName'];
     token = widget.data['token'];
-    print('Frontend Response : Token: $token');
+    // print('Frontend Response : Token: $token');
     fetchDevicesByHospital();
   }
 
   void fetchDevicesByHospital() async {
     var response = await http.get(
-      Uri.parse('$getDevicesByHospital/$hospitalName'),
+      Uri.parse(getDeviceForUser),
       headers: {
-        "Authorization": token,
+        "Authorization": 'Bearer $token',
       },
     );
     var jsonResponse = jsonDecode(response.body);
     if (jsonResponse['statusValue'] == 'SUCCESS') {
-      var devicesList = jsonResponse['data'];
-      print('Device List: $devicesList');
+      var data = jsonResponse['data'];
+      var devicesList = data['data'];
+      // print('Device List: $devicesList');
 
       for (var deviceData in devicesList) {
         var deviceId = deviceData['deviceId'];
-        var token = widget.data['token'];
-        print('Device ID: $deviceId');
-                print('token 2: $token');
+        print('Device ID: $deviceData');
         setState(() {
           deviceDataList.add(deviceData);
         });
@@ -304,7 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 10),
-              if (deviceDataList.isNotEmpty) ActiveDevices(deviceDataList, token),
+              if (deviceDataList.isNotEmpty) ActiveDevices(deviceDataList),
               SizedBox(height: 20),
             ],
           ),
