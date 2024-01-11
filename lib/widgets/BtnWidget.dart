@@ -3,9 +3,6 @@
 import 'package:flutter/material.dart';
 
 class BtnWidget extends StatelessWidget {
-  const BtnWidget({
-    super.key,
-  });
 
   @override
   Widget build(BuildContext context) {

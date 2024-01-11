@@ -5,14 +5,16 @@ import '../Screens/DeviceDetails.dart';
 
 class ActiveDevices extends StatefulWidget {
   final List<Map<String, dynamic>> deviceList;
+    final List<Map<String, dynamic>> deviceData;
 
-  ActiveDevices(this.deviceList);
+  ActiveDevices(this.deviceList, this.deviceData);
 
   @override
   _ActiveDevicesState createState() => _ActiveDevicesState();
 }
 
 class _ActiveDevicesState extends State<ActiveDevices> {
+
   int _expandedIndex = -1;
 
   @override
@@ -32,7 +34,7 @@ class _ActiveDevicesState extends State<ActiveDevices> {
           child: Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Container(
-              height: isExpanded ? 250 : 130,
+              height: isExpanded ? 250 : 120,
               width: 380,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
@@ -95,8 +97,10 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    for (var info in deviceData['deviceInfo']) 
                     Text(
-                      deviceData['deviceId'],
+                      // deviceData['deviceId'],
+                      '${info['DeviceType']}',
                       style: TextStyle(
                         fontFamily: 'Avenir',
                         color: Color.fromARGB(255, 58, 58, 58),
@@ -119,7 +123,7 @@ class _ActiveDevicesState extends State<ActiveDevices> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 50, bottom: 20),
+            padding: const EdgeInsets.only(left: 130, bottom: 20),
             child: Container(
               height: 60,
               width: 80,

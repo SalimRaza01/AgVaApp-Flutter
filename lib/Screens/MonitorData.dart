@@ -11,6 +11,8 @@ class MonitorData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<dynamic> deviceInfoList = deviceData['deviceInfo'];
+
     return Container(
       decoration: BoxDecoration(),
       child: Scaffold(
@@ -21,11 +23,11 @@ class MonitorData extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
-                  child: MDWidget(),
+                  padding: const EdgeInsets.only(right: 20, left: 20, top: 10),
+                    child: MDWidget(deviceData: deviceData),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 20, left: 20, top: 10),
+                  padding: const EdgeInsets.only(right: 20, left: 20,),
                   child: Column(
                     children: [
                       Container(
@@ -121,52 +123,69 @@ class MonitorData extends StatelessWidget {
                               color: Colors.black,
                             ),
                             //Make it ListView
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 30, right: 50, top: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    '${deviceData['deviceId']}',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(255, 58, 58, 58),
+                            ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: deviceInfoList.length,
+                                itemBuilder: (context, index) {
+                                  var info = deviceInfoList[index];
+
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 30, right: 50, top: 10),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      // mainAxisAlignment:
+                                      //     MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          '${info['DeviceId']}',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color:
+                                                Color.fromARGB(255, 58, 58, 58),
+                                          ),
+                                        ),
+                                        SizedBox(width: 70,),
+                                        Text(
+                                          'message',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color:
+                                                Color.fromARGB(255, 58, 58, 58),
+                                          ),
+                                        ),
+                                          SizedBox(width: 130,),
+                                        Text(
+                                            '${info['DeviceType']}',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color:
+                                                Color.fromARGB(255, 58, 58, 58),
+                                          ),
+                                        ),
+                                          SizedBox(width: 110,),
+                                        Text(
+                                          'Data',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color:
+                                                Color.fromARGB(255, 58, 58, 58),
+                                          ),
+                                        ),
+                                          SizedBox(width: 130,),
+                                        Text(
+                                          'Time',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color:
+                                                Color.fromARGB(255, 58, 58, 58),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                  Text(
-                                    'Message',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(255, 58, 58, 58),
-                                    ),
-                                  ),
-                                  Text(
-                                    'Type',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(255, 58, 58, 58),
-                                    ),
-                                  ),
-                                  Text(
-                                    'Data',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(255, 58, 58, 58),
-                                    ),
-                                  ),
-                                  Text(
-                                    'Time',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color.fromARGB(255, 58, 58, 58),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                  );
+                                }),
                             SizedBox(
                               height: 10,
                             ),

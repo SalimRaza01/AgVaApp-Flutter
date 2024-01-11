@@ -43,19 +43,32 @@ class _HomeScreenState extends State<HomeScreen> {
     if (jsonResponse['statusValue'] == 'SUCCESS') {
       var data = jsonResponse['data'];
       var devicesList = data['data'];
-      // print('Device List: $devicesList');
-
-      for (var deviceData in devicesList) {
-        var deviceId = deviceData['deviceId'];
-        print('Device ID: $deviceData');
-        setState(() {
-          deviceDataList.add(deviceData);
-        });
-      }
-    } else {
-      print('Invalid User Credential: ${response.statusCode}');
+for (var deviceData in devicesList) {
+      var deviceId = deviceData['deviceId'];
+      var deviceInfoList = deviceData['deviceInfo'];
+       print('Device');
+          print('Info');
+             print('List');
+      print('$deviceInfoList');
+      setState(() {
+        deviceDataList.add(deviceData);
+      });
     }
+  } else {
+    print('Invalid User Credential: ${response.statusCode}');
   }
+}
+  //     for (var deviceData in devicesList) {
+  //       var deviceId = deviceData['deviceId'];
+  //       print('DeviceData: $deviceData');
+  //       setState(() {
+  //         deviceDataList.add(deviceData);
+  //       });
+  //     }
+  //   } else {
+  //     print('Invalid User Credential: ${response.statusCode}');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -303,7 +316,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 10),
-              if (deviceDataList.isNotEmpty) ActiveDevices(deviceDataList),
+              if (deviceDataList.isNotEmpty) ActiveDevices(deviceDataList, []),
               SizedBox(height: 20),
             ],
           ),
