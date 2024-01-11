@@ -84,7 +84,7 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                       height: 10,
                       width: 10,
                       child: Image.asset(
-                         getImagePath(deviceData['message']),
+                        getImagePath(deviceData['message']),
                       ),
                     ),
                   ),
@@ -172,36 +172,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 40,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              spreadRadius: 1,
-                              blurRadius: 10,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                          color: Color.fromARGB(255, 157, 0, 86),
-                        ),
-                        child: TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(),
-                          child: Text(
-                            "Request",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 95,
-                      ),
                       Container(
                         height: 40,
                         width: 100,
