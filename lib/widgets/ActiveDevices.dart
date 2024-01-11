@@ -17,7 +17,7 @@ class _ActiveDevicesState extends State<ActiveDevices> {
 
   int _expandedIndex = -1;
 
-  @override
+   @override
   Widget build(BuildContext context) {
     return Column(
       children: widget.deviceList.asMap().entries.map((entry) {
@@ -33,8 +33,9 @@ class _ActiveDevicesState extends State<ActiveDevices> {
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: Container(
-              height: isExpanded ? 250 : 120,
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 200), 
+              height: isExpanded ? 240 : 120,
               width: 380,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
