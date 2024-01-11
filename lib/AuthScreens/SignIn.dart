@@ -51,7 +51,6 @@ class _SignInState extends State<SignIn> {
           var name = data['name'];
           var hospitalName = data['hospitalName'];
           var token = data['token'];
-          print('Frontend Response : token: $token');
 
           Navigator.push(
               context,

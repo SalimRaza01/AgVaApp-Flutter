@@ -1,4 +1,7 @@
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable
+
 import 'package:agva_app/Screens/DeviceDetails.dart';
+import 'package:agva_app/Screens/MonitorData.dart';
 import 'package:flutter/material.dart';
 import 'AuthScreens/SignIn.dart';
 import 'AuthScreens/SignUp.dart';
@@ -11,6 +14,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,6 +29,7 @@ class MyApp extends StatelessWidget {
         "/splash": (context) => SplashScreen(),
         "/home": (context) => HomeScreen({}),
         "/devicedetails": (context) => DeviceDetails({}),
+         "/monitordata": (context) => MonitorData(),
              "/tandc": (context) => TermsCondition(),
       },
     );

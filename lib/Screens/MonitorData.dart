@@ -1,17 +1,16 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
 import '../widgets/BtnWidget.dart';
 import '../widgets/MDWidget.dart';
 
 class MonitorData extends StatefulWidget {
-  const MonitorData({super.key});
-
   @override
   State<MonitorData> createState() => _MonitorDataState();
 }
-
 class _MonitorDataState extends State<MonitorData> {
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,6 +66,118 @@ class _MonitorDataState extends State<MonitorData> {
                             ),
                           ],
                           color: Colors.white,
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 30, right: 50, top: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Device ID',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 58, 58, 58),
+                                    ),
+                                  ),
+                                  Text(
+                                    'Message',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 58, 58, 58),
+                                    ),
+                                  ),
+                                  Text(
+                                    'Type',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 58, 58, 58),
+                                    ),
+                                  ),
+                                  Text(
+                                    'Data',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 58, 58, 58),
+                                    ),
+                                  ),
+                                  Text(
+                                    'Time',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color.fromARGB(255, 58, 58, 58),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              height: 0.1,
+                              color: Colors.black,
+                            ),
+                            //Make it ListView
+                            Padding(
+                             padding: const EdgeInsets.only(
+                                  left: 30, right: 50, top: 10),
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                     'asd',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color.fromARGB(255, 58, 58, 58),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Message',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color.fromARGB(255, 58, 58, 58),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Type',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color.fromARGB(255, 58, 58, 58),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Data',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color.fromARGB(255, 58, 58, 58),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Time',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color.fromARGB(255, 58, 58, 58),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                
+                            ),
+                                SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              height: 0.1,
+                              color: Colors.black,
+                            ),
+                          ],
                         ),
                       ),
                     ],

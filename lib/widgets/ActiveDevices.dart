@@ -6,7 +6,7 @@ import '../Screens/DeviceDetails.dart';
 class ActiveDevices extends StatefulWidget {
   final List<Map<String, dynamic>> deviceList;
 
-  ActiveDevices(this.deviceList);
+  ActiveDevices(this.deviceList, String token);
 
   @override
   _ActiveDevicesState createState() => _ActiveDevicesState();
@@ -14,6 +14,7 @@ class ActiveDevices extends StatefulWidget {
 
 class _ActiveDevicesState extends State<ActiveDevices> {
   int _expandedIndex = -1;
+  late String token;
 
   @override
   Widget build(BuildContext context) {

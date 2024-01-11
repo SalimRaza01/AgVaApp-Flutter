@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: unused_import, unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
 
 import 'dart:convert';
 import 'package:agva_app/Screens/MonitorData.dart';
@@ -9,7 +9,8 @@ class DeviceDetails extends StatelessWidget {
     final Map<String, dynamic> deviceData;
 
   DeviceDetails(this.deviceData);
-  
+
+
   @override
   Widget build(BuildContext context) {
     return Container(

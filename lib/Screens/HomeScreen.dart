@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     name = widget.data['name'];
     hospitalName = widget.data['hospitalName'];
     token = widget.data['token'];
-    // print('Frontend Response : Token: $token');
+    print('Frontend Response : Token: $token');
     fetchDevicesByHospital();
   }
 
@@ -46,7 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
       for (var deviceData in devicesList) {
         var deviceId = deviceData['deviceId'];
+        var token = widget.data['token'];
         print('Device ID: $deviceId');
+                print('token 2: $token');
         setState(() {
           deviceDataList.add(deviceData);
         });
@@ -302,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 10),
-              if (deviceDataList.isNotEmpty) ActiveDevices(deviceDataList),
+              if (deviceDataList.isNotEmpty) ActiveDevices(deviceDataList, token),
               SizedBox(height: 20),
             ],
           ),
