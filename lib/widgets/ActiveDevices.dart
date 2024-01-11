@@ -86,7 +86,7 @@ class ActiveDevices extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 10,
+                        top: 20,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -117,7 +117,7 @@ class ActiveDevices extends StatelessWidget {
         return "assets/images/Suction.png";
       case '2ab16f2edef8891a':
         return "assets/images/AgVaPro.png";
-              case '2ab16f2edef8891a':
+      case '2ab16f2edef8891a':
         return "assets/images/AgVaPro.png";
       default:
         return "assets/images/DVT.png";
