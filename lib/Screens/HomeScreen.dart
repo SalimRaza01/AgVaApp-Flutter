@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void fetchDevicesByHospital() async {
     var response = await http.get(
-     Uri.parse('$getDevicesByHospital/$hospitalName'),
+      Uri.parse('$getDevicesByHospital/$hospitalName'),
       headers: {
         "Authorization": token,
       },
@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var jsonResponse = jsonDecode(response.body);
     if (jsonResponse['statusValue'] == 'SUCCESS') {
       var devicesList = jsonResponse['data'];
-       print('Device List: $devicesList');
+      print('Device List: $devicesList');
 
       for (var deviceData in devicesList) {
         var deviceId = deviceData['deviceId'];
@@ -302,29 +302,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 10),
-              if (deviceDataList.isNotEmpty)
-              ActiveDevices(deviceDataList),
-                      SizedBox(height: 20),
-              
-              // active devices
-              // GestureDetector(
-              //   onTap: () {
-              //     if (deviceDataList.isNotEmpty) {
-              //       Navigator.push(
-              //         context,
-              //         MaterialPageRoute(
-              //       builder: (context) => DeviceDetails(deviceDataList[0]),
-              //         ),
-              //       );
-              //     }
-              //   },
-                
-              //   child: ActiveDevices(deviceDataList),
-                
-              // ),
-              
+              if (deviceDataList.isNotEmpty) ActiveDevices(deviceDataList),
+              SizedBox(height: 20),
             ],
-            
           ),
         ),
       ),
