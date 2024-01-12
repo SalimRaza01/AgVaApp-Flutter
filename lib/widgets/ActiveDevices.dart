@@ -99,7 +99,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                   children: [
                     for (var info in deviceData['deviceInfo'])
                       Text(
-                        // deviceData['deviceId'],
                         '${info['DeviceType']}',
                         style: TextStyle(
                           fontFamily: 'Avenir',
@@ -144,8 +143,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //showing other widgets
-              // buildCollapsedContent(deviceData),
               Padding(
                 padding: const EdgeInsets.only(left: 30, top: 20),
                 child: Column(
@@ -164,7 +161,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     ),
                     Text(
                       'Hospital Name :',
-                      // deviceData['deviceId'],
                       style: TextStyle(
                         fontFamily: 'Avenir',
                         color: const Color.fromARGB(255, 65, 65, 65),
@@ -176,7 +172,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     ),
                     Text(
                       'Department Name :',
-                      // deviceData['deviceId'],
                       style: TextStyle(
                         fontFamily: 'Avenir',
                         color: const Color.fromARGB(255, 65, 65, 65),
@@ -188,7 +183,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     ),
                     Text(
                       'Doctor Name :',
-                      // deviceData['deviceId'],
                       style: TextStyle(
                         fontFamily: 'Avenir',
                         color: const Color.fromARGB(255, 65, 65, 65),
@@ -200,7 +194,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     ),
                     Text(
                       'Alias Name :',
-                      // deviceData['deviceId'],
                       style: TextStyle(
                         fontFamily: 'Avenir',
                         color: const Color.fromARGB(255, 65, 65, 65),
@@ -212,7 +205,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     ),
                     Text(
                       'Ward No :',
-                      // deviceData['deviceId'],
                       style: TextStyle(
                         fontFamily: 'Avenir',
                         color: const Color.fromARGB(255, 65, 65, 65),
@@ -224,7 +216,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     ),
                     Text(
                       'Bio-Med :',
-                      // deviceData['deviceId'],
                       style: TextStyle(
                         fontFamily: 'Avenir',
                         color: const Color.fromARGB(255, 65, 65, 65),
@@ -244,7 +235,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                   children: [
                     for (var info in deviceData['deviceInfo'])
                       Text(
-                        // 'Device ID : ${deviceData['deviceId']}',
                         '${info['DeviceId']}',
                         style: TextStyle(
                           fontFamily: 'Avenir',
@@ -258,7 +248,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     for (var info in deviceData['deviceInfo'])
                       Text(
                         '${info['Hospital_Name']}',
-                        // deviceData['deviceId'],
                         style: TextStyle(
                           fontFamily: 'Avenir',
                           color: const Color.fromARGB(255, 65, 65, 65),
@@ -271,7 +260,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     for (var info in deviceData['deviceInfo'])
                       Text(
                         '${info['Department_Name']}',
-                        // deviceData['deviceId'],
                         style: TextStyle(
                           fontFamily: 'Avenir',
                           color: const Color.fromARGB(255, 65, 65, 65),
@@ -284,7 +272,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     for (var info in deviceData['deviceInfo'])
                       Text(
                         '${info['Doctor_Name']}',
-                        // deviceData['deviceId'],
                         style: TextStyle(
                           fontFamily: 'Avenir',
                           color: const Color.fromARGB(255, 65, 65, 65),
@@ -297,7 +284,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     for (var info in deviceData['deviceInfo'])
                       Text(
                         '${info['Alias_Name']}',
-                        // deviceData['deviceId'],
                         style: TextStyle(
                           fontFamily: 'Avenir',
                           color: const Color.fromARGB(255, 65, 65, 65),
@@ -310,7 +296,6 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                     for (var info in deviceData['deviceInfo'])
                       Text(
                         '${info['Ward_No']}',
-                        // deviceData['deviceId'],
                         style: TextStyle(
                           fontFamily: 'Avenir',
                           color: const Color.fromARGB(255, 65, 65, 65),
