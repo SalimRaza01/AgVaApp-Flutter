@@ -124,12 +124,12 @@ class _ActiveDevicesState extends State<ActiveDevices> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 130, bottom: 20),
+            padding: const EdgeInsets.only(left: 140, bottom: 20),
             child: Container(
               height: 60,
-              width: 80,
+              width: 60,
               child: Image.asset(
-                "assets/images/AgVaPro.png",
+                "assets/images/AgVaPro2.png",
               ),
             ),
           ),

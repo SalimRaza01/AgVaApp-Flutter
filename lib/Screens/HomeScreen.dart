@@ -46,10 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
 for (var deviceData in devicesList) {
       var deviceId = deviceData['deviceId'];
       var deviceInfoList = deviceData['deviceInfo'];
-       print('Device');
-          print('Info');
-             print('List');
-      print('$deviceInfoList');
+      print('deviceInfoList $deviceInfoList');
       setState(() {
         deviceDataList.add(deviceData);
       });
@@ -58,18 +55,6 @@ for (var deviceData in devicesList) {
     print('Invalid User Credential: ${response.statusCode}');
   }
 }
-  //     for (var deviceData in devicesList) {
-  //       var deviceId = deviceData['deviceId'];
-  //       print('DeviceData: $deviceData');
-  //       setState(() {
-  //         deviceDataList.add(deviceData);
-  //       });
-  //     }
-  //   } else {
-  //     print('Invalid User Credential: ${response.statusCode}');
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
