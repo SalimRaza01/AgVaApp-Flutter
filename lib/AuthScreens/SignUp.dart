@@ -5,7 +5,6 @@ import 'package:agva_app/Screens/RegDone.dart';
 import 'package:agva_app/Screens/TermsCondition.dart';
 import 'package:agva_app/config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -107,10 +106,6 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-         SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      // DeviceOrientation.landscapeRight,
-    ]);
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(

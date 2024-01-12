@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:agva_app/Screens/DeviceAbout.dart';
 import 'package:agva_app/Screens/MonitorData.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class DeviceDetails extends StatelessWidget {
@@ -13,10 +12,7 @@ class DeviceDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      // DeviceOrientation.landscapeRight,
-    ]);
+
     return Container(
       decoration: BoxDecoration(),
       child: Scaffold(

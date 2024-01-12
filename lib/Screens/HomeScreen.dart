@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:agva_app/AuthScreens/SignIn.dart';
 import 'package:agva_app/Screens/DeviceDetails.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../config.dart';
 import '../widgets/ActiveDevices.dart';
 import 'package:http/http.dart' as http;
@@ -58,11 +57,6 @@ for (var deviceData in devicesList) {
 }
   @override
   Widget build(BuildContext context) {
-
-     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      // DeviceOrientation.landscapeRight,
-    ]);
     
     return Scaffold(
       appBar: AppBar(

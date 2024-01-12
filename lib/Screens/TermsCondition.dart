@@ -6,10 +6,7 @@ import 'package:flutter/services.dart';
 class TermsCondition extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-         SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      // DeviceOrientation.landscapeRight,
-    ]);
+
     return Container(
       decoration: BoxDecoration(),
       child: Scaffold(
