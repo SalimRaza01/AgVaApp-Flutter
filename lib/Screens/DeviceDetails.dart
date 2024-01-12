@@ -28,7 +28,7 @@ class DeviceDetails extends StatelessWidget {
                     "Device Details",
                     style: TextStyle(
                       fontFamily: 'Avenir',
-                      fontSize: 20,
+                      fontSize: 24,
                       color: Color.fromARGB(255, 157, 0, 86),
                     ),
                   ),
