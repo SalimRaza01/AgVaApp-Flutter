@@ -44,7 +44,7 @@ final Map<String, dynamic> deviceData;
                             Padding(
                               padding: EdgeInsets.only(left: 10, top: 5),
                               child: Text(
-                                'Doctor',
+                                'Status',
                                 style: TextStyle(
                                   fontFamily: 'Avenir',
                                   color: Colors.black,
@@ -57,8 +57,161 @@ final Map<String, dynamic> deviceData;
                                 Padding(
                                   padding: EdgeInsets.only(left: 10),
                                   child: Text(
-                                     '${info['Alias_Name']}',
-                              
+                                    //  '${info['Alias_Name']}',
+                              (deviceData['message']),
+                                    style: TextStyle(
+                                      fontFamily: 'Avenir',
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        height: 40,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.6),
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 10, top: 5),
+                              child: Text(
+                                'Alias Name',
+                                style: TextStyle(
+                                  fontFamily: 'Avenir',
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 5),
+                                  child: Text(
+                                    '${info['Alias_Name']}',
+                                    style: TextStyle(
+                                      fontFamily: 'Avenir',
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        height: 40,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.6),
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 10, top: 5),
+                              child: Text(
+                                'Department',
+                                style: TextStyle(
+                                  fontFamily: 'Avenir',
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Text(
+                                         '${info['Department_Name']}',
+                                    style: TextStyle(
+                                      fontFamily: 'Avenir',
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        height: 40,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.6),
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 10, top: 5),
+                              child: Text(
+                                'Hospital',
+                                style: TextStyle(
+                                  fontFamily: 'Avenir',
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    '${info['Hospital_Name']}',
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       fontSize: 8,
@@ -123,59 +276,7 @@ final Map<String, dynamic> deviceData;
                           ],
                         ),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                        height: 40,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.6),
-                              blurRadius: 5,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 10, top: 5),
-                              child: Text(
-                                'IMEI No.',
-                                style: TextStyle(
-                                  fontFamily: 'Avenir',
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Text(
-                                         '${info['IMEI_NO']}',
-                                    style: TextStyle(
-                                      fontFamily: 'Avenir',
-                                      fontSize: 8,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
+                    ),SizedBox(width: 10),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Container(
@@ -209,7 +310,7 @@ final Map<String, dynamic> deviceData;
                             Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(left: 10),
+                                  padding: EdgeInsets.only(left: 5),
                                   child: Text(
                                     '${info['Bio_Med']}',
                                     style: TextStyle(
