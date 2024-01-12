@@ -175,7 +175,7 @@ for (var deviceData in devicesList) {
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
-                                'Name',
+                                'Not Specified',
                                 style: TextStyle(
                                   fontFamily: 'Avenir',
                                   fontSize: 15,
@@ -283,7 +283,7 @@ for (var deviceData in devicesList) {
                             Padding(
                               padding: EdgeInsets.only(left: 10),
                               child: Text(
-                                'Name',
+                                'Not Specified',
                                 style: TextStyle(
                                   fontFamily: 'Avenir',
                                   fontSize: 15,

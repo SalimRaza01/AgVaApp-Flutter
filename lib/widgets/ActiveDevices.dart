@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import '../Screens/DeviceDetails.dart';
 
 class ActiveDevices extends StatefulWidget {
   final List<Map<String, dynamic>> deviceList;
-    final List<Map<String, dynamic>> deviceData;
+  final List<Map<String, dynamic>> deviceData;
 
   ActiveDevices(this.deviceList, this.deviceData);
 
@@ -14,10 +14,9 @@ class ActiveDevices extends StatefulWidget {
 }
 
 class _ActiveDevicesState extends State<ActiveDevices> {
-
   int _expandedIndex = -1;
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: widget.deviceList.asMap().entries.map((entry) {
@@ -34,8 +33,8 @@ class _ActiveDevicesState extends State<ActiveDevices> {
           child: Padding(
             padding: const EdgeInsets.only(top: 10),
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 200), 
-              height: isExpanded ? 240 : 120,
+              duration: Duration(milliseconds: 200),
+              height: isExpanded ? 300 : 120,
               width: 380,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
@@ -98,17 +97,17 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    for (var info in deviceData['deviceInfo']) 
-                    Text(
-                      // deviceData['deviceId'],
-                      '${info['DeviceType']}',
-                      style: TextStyle(
-                        fontFamily: 'Avenir',
-                        color: Color.fromARGB(255, 58, 58, 58),
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        // deviceData['deviceId'],
+                        '${info['DeviceType']}',
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: Color.fromARGB(255, 58, 58, 58),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
                     SizedBox(height: 2),
                     Text(
                       'Serial Number',
@@ -139,86 +138,243 @@ class _ActiveDevicesState extends State<ActiveDevices> {
   }
 
   Widget buildExpandedContent(Map<String, dynamic> deviceData) {
-    return Row(
+    return Column(
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //showing other widgets
-            buildCollapsedContent(deviceData),
-            Padding(
-              padding: const EdgeInsets.only(left: 30, top: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Device ID : ${deviceData['deviceId']}',
-                    // deviceData['deviceId'],
-                    style: TextStyle(
-                      fontFamily: 'Avenir',
-                      color: const Color.fromARGB(255, 65, 65, 65),
-                      fontSize: 12,
+        Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //showing other widgets
+              // buildCollapsedContent(deviceData),
+              Padding(
+                padding: const EdgeInsets.only(left: 30, top: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Device ID :',
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Last Hour : ${deviceData['last_hours']}',
-                    style: TextStyle(
-                      fontFamily: 'Avenir',
-                      color: Colors.red,
-                      fontSize: 12,
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              spreadRadius: 1,
-                              blurRadius: 10,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                          color: Color.fromARGB(255, 157, 0, 86),
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DeviceDetails(deviceData),
-                              ),
-                            );
-                          },
-                          style: TextButton.styleFrom(),
-                          child: Text(
-                            "Request",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                            ),
-                          ),
+                    Text(
+                      'Hospital Name :',
+                      // deviceData['deviceId'],
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Department Name :',
+                      // deviceData['deviceId'],
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Doctor Name :',
+                      // deviceData['deviceId'],
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Alias Name :',
+                      // deviceData['deviceId'],
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Ward No :',
+                      // deviceData['deviceId'],
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Bio-Med :',
+                      // deviceData['deviceId'],
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 80, top: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        // 'Device ID : ${deviceData['deviceId']}',
+                        '${info['DeviceId']}',
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
                         ),
                       ),
-                    ],
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Hospital_Name']}',
+                        // deviceData['deviceId'],
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
+                        ),
+                      ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Department_Name']}',
+                        // deviceData['deviceId'],
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
+                        ),
+                      ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Doctor_Name']}',
+                        // deviceData['deviceId'],
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
+                        ),
+                      ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Alias_Name']}',
+                        // deviceData['deviceId'],
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
+                        ),
+                      ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Ward_No']}',
+                        // deviceData['deviceId'],
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
+                        ),
+                      ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Bio_Med']}',
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
+                        ),
+                      ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Container(
+            height: 40,
+            width: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3),
+                  spreadRadius: 1,
+                  blurRadius: 10,
+                  offset: Offset(0, 3),
+                ),
+              ],
+              color: Color.fromARGB(255, 157, 0, 86),
+            ),
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DeviceDetails(deviceData),
                   ),
-                ],
+                );
+              },
+              style: TextButton.styleFrom(),
+              child: Text(
+                "Request",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                ),
               ),
             ),
-          ],
+          ),
         ),
-        // ),
       ],
     );
   }
