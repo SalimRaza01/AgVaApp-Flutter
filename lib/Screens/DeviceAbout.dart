@@ -1,13 +1,36 @@
-// ignore_for_file: unused_import, unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: unused_import, unused_local_variable, prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
 
 import 'dart:convert';
+import 'package:agva_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class DeviceAbout extends StatelessWidget {
-  final Map<String, dynamic> deviceData;
+  final String deviceId;
 
-  DeviceAbout(this.deviceData);
+  DeviceAbout(this.deviceId);
+
+  var mydeviceid = '724963b4f3ae2a8f';
+  var token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU4YTcxNjc4OTc4NTYzYWZjODZlNGFkIiwianRpIjoiQ2xjb05xQjdGWCIsImlhdCI6MTcwNTA0MDk2NywiZXhwIjoxNzA2MzM2OTY3fQ.J4gXkfgnSnmttAzcSRyjn_uTQ1XI-jHCQWE8iBdsSd4';
+
+  void getProductionData() async {
+    var response = await http.get(
+      Uri.parse('$getProductionData/$mydeviceid'),
+       headers: {
+          "Authorization": 'Bearer $token',
+        },
+    );
+    var jsonResponse = jsonDecode(response.body);
+    print(jsonResponse);
+    if (jsonResponse['statusValue'] == 'SUCCESS') {
+      var data = jsonResponse['data'];
+      print('production data $data');
+      print('production data $deviceId');
+    } else {
+      print('Invalid User Credential: ${response.statusCode}');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +70,8 @@ class DeviceAbout extends StatelessWidget {
                               children: [
                                 Text(
                                   'Product :',
-                                  // 'deviceId',
+                                  //  deviceId,
+                                  //  ' ${data['productType']}',
                                   style: TextStyle(
                                     fontFamily: 'Avenir',
                                     color: Color.fromARGB(255, 58, 58, 58),

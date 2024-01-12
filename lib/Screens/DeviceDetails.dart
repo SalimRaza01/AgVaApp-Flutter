@@ -12,7 +12,6 @@ class DeviceDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       decoration: BoxDecoration(),
       child: Scaffold(
@@ -296,7 +295,7 @@ class DeviceDetails extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => DeviceAbout(deviceData),
+                                  builder: (context) => DeviceAbout(deviceData['deviceId']),
                                 ),
                               );
                             },

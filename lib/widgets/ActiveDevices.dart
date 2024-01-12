@@ -230,7 +230,7 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 80, top: 20),
+                padding: const EdgeInsets.only(left: 70, top: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
