@@ -30,10 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
     hospitalName = widget.data['hospitalName'];
     token = widget.data['token'];
     // print('Frontend Response : Token: $token');
-    fetchDevicesByHospital();
+    fetchGetdevicesForUsers();
   }
 
-  void fetchDevicesByHospital() async {
+  void fetchGetdevicesForUsers() async {
     var response = await http.get(
       Uri.parse(getDeviceForUser),
       headers: {

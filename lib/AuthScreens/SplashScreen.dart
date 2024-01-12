@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:agva_app/Screens/Products.dart';
 import 'package:flutter/material.dart';
 import './SignIn.dart';
 
@@ -17,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Start a timer to navigate to SignIn screen after 2 seconds
     Timer(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => SignIn( )),
+        MaterialPageRoute(builder: (context) => Products( )),
       );
     });
   }

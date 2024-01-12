@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import '../config.dart';
 
 class Products extends StatefulWidget {
   @override
@@ -8,61 +11,101 @@ class Products extends StatefulWidget {
 }
 
 class _ProductsState extends State<Products> {
+  var token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU4YTcxNjc4OTc4NTYzYWZjODZlNGFkIiwianRpIjoiQ2xjb05xQjdGWCIsImlhdCI6MTcwNTA0MDk2NywiZXhwIjoxNzA2MzM2OTY3fQ.J4gXkfgnSnmttAzcSRyjn_uTQ1XI-jHCQWE8iBdsSd4';
+
+  List<String> projectNames = []; // List to store project names
+
+  @override
+  void initState() {
+    super.initState();
+    fetchProjects();
+  }
+
+  void fetchProjects() async {
+    try {
+      var response = await http.get(
+        Uri.parse(getProjects),
+        headers: {
+          "Authorization": 'Bearer $token',
+        },
+      );
+      var jsonResponse = jsonDecode(response.body);
+      if (jsonResponse['status'] == 1) {
+        var data = jsonResponse['data'];
+        var projectList = data['data'];
+        for (var project in projectList) {
+          var name = project['name'];
+          setState(() {
+            projectNames.add(name);
+          });
+        }
+      } else {
+        print('Invalid User Credential: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error fetching projects: $error');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Stack(
-          children: [
-            Container(
-                    height: 300,
-                        width: 200,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 16, left: 30, right: 16),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Container(
+        height: 800,
+        width: 500,
+        
+        child: Padding(
+          padding: const EdgeInsets.only(top: 100),
+          child: ListView.builder(
+            itemCount: projectNames.length,
+            itemBuilder: (context, index) {
+              return Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3),
+                  spreadRadius: 1,
+                  blurRadius: 10,
+                  offset: Offset(0, 3),
+                ),
+              ],
+        color: Colors.white,
+            ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 140, bottom: 20),
-                              child: Container(
-                                height: 60,
-                                width: 60,
-                                child: Image.asset(
-                                  "assets/images/AgVaPro2.png",
-                                ),
-                              ),
-                            ),
-                            Text(
-                              // deviceData['deviceId'],
-                              'DeviceType',
-                              style: TextStyle(
-                                fontFamily: 'Avenir',
-                                color: Color.fromARGB(255, 58, 58, 58),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                    Container(
+                      height: 150,
+                      width: 150,
+                      child: Image.asset(
+                        "assets/images/AgVaPro2.png",
+                      ),
+                    ),
+                    Text(
+                      projectNames[index],
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: Color.fromARGB(255, 58, 58, 58),
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ),
-          ],
+              );
+            },
+          ),
         ),
       ),
     );
   }
 }
+
 
               
                 // String getImagePath(String message) {

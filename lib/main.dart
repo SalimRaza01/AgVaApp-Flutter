@@ -2,6 +2,7 @@
 
 import 'package:agva_app/Screens/DeviceDetails.dart';
 import 'package:agva_app/Screens/MonitorData.dart';
+import 'package:agva_app/Screens/Products.dart';
 import 'package:flutter/material.dart';
 import 'AuthScreens/SignIn.dart';
 import 'AuthScreens/SignUp.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         "/devicedetails": (context) => DeviceDetails({}),
          "/monitordata": (context) => MonitorData({}),
              "/tandc": (context) => TermsCondition(),
+              "/projects": (context) => Products(),
       },
     );
   }
