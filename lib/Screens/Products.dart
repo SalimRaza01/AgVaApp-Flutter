@@ -14,7 +14,7 @@ class _ProductsState extends State<Products> {
   var token =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU4YTcxNjc4OTc4NTYzYWZjODZlNGFkIiwianRpIjoiQ2xjb05xQjdGWCIsImlhdCI6MTcwNTA0MDk2NywiZXhwIjoxNzA2MzM2OTY3fQ.J4gXkfgnSnmttAzcSRyjn_uTQ1XI-jHCQWE8iBdsSd4';
 
-  List<String> projectNames = []; // List to store project names
+  List<String> projectNames = [];
 
   @override
   void initState() {
@@ -53,18 +53,17 @@ class _ProductsState extends State<Products> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        height: 800,
-        width: 500,
-        
         child: Padding(
-          padding: const EdgeInsets.only(top: 100),
-          child: ListView.builder(
-            itemCount: projectNames.length,
-            itemBuilder: (context, index) {
-              return Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
+            padding: const EdgeInsets.all(30),
+            child: ListView.builder(
+                itemCount: projectNames.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Container(
+                        height: 200,
+                        width: 300,
+                        decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
@@ -74,38 +73,57 @@ class _ProductsState extends State<Products> {
                   offset: Offset(0, 3),
                 ),
               ],
-        color: Colors.white,
+              color: Colors.white,
             ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 150,
-                      width: 150,
-                      child: Image.asset(
-                        "assets/images/AgVaPro2.png",
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                                  SizedBox(width: 10,),
+                            Container(
+                              height: 150,
+                              width: 100,
+                              child: Image.asset(
+                                "assets/images/AgVaCrop.png",
+                              ),
+                            ),
+                            SizedBox(width: 30,),
+                            Text(
+                              projectNames[index],
+                              style: TextStyle(
+                                fontFamily: 'Avenir',
+                                color: Color.fromARGB(255, 58, 58, 58),
+                                fontSize: 24,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Text(
-                      projectNames[index],
-                      style: TextStyle(
-                        fontFamily: 'Avenir',
-                        color: Color.fromARGB(255, 58, 58, 58),
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ),
+                    ],
+                  );
+                })),
       ),
     );
   }
 }
-
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Container(
+              //     height: 200,
+              //     width: 200,
+              //     decoration: BoxDecoration(
+              //   borderRadius: BorderRadius.circular(10),
+              //   boxShadow: [
+              //     BoxShadow(
+              //       color: Colors.grey.withOpacity(0.3),
+              //       spreadRadius: 1,
+              //       blurRadius: 10,
+              //       offset: Offset(0, 3),
+              //     ),
+              //   ],
+              //           color: Colors.white,
+              //               ),
+              //     child: 
 
               
                 // String getImagePath(String message) {
