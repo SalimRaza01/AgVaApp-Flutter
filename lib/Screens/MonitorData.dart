@@ -128,6 +128,7 @@ class _MonitorDataState extends State<MonitorData> {
             style: TextStyle(
               color: textColor,
               fontSize: 12,
+              fontWeight: FontWeight.bold
             ),
           ),
         ),
@@ -194,13 +195,21 @@ class _MonitorDataState extends State<MonitorData> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     buildColumnContent('${info['DeviceId']}'),
-                    SizedBox(width: 70,),
+                    SizedBox(
+                      width: 70,
+                    ),
                     buildColumnContent('message'),
-                           SizedBox(width: 60,),
+                    SizedBox(
+                      width: 60,
+                    ),
                     buildColumnContent('${info['DeviceType']}'),
-                           SizedBox(width: 40,),
+                    SizedBox(
+                      width: 40,
+                    ),
                     buildColumnContent('Data'),
-                                    SizedBox(width: 10,),
+                    SizedBox(
+                      width: 10,
+                    ),
                     buildColumnContent('Time'),
                   ],
                 ),
