@@ -93,7 +93,7 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 0, top: 16, right: 0),
+                padding: const EdgeInsets.only(left: 0, top: 12, right: 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -103,13 +103,14 @@ class _ActiveDevicesState extends State<ActiveDevices> {
                         style: TextStyle(
                           fontFamily: 'Avenir',
                           color: Color.fromARGB(255, 58, 58, 58),
-                          fontSize: 18,
+                          fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                     SizedBox(height: 2),
                     Text(
-                      'Serial Number',
+                      //for Serial Number
+                      '',
                       style: TextStyle(
                         fontFamily: 'Avenir',
                         color: const Color.fromARGB(255, 65, 65, 65),
@@ -137,230 +138,230 @@ class _ActiveDevicesState extends State<ActiveDevices> {
   }
 
   Widget buildExpandedContent(Map<String, dynamic> deviceData) {
-    return  Column(
-        children: [
-          Center(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Device ID :',
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          color: const Color.fromARGB(255, 65, 65, 65),
-                          fontSize: 12,
-                        ),
+    return Column(
+      children: [
+        Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 30, top: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Device ID :',
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
                       ),
-                      SizedBox(
-                        height: 10,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Hospital Name :',
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
                       ),
-                      Text(
-                        'Hospital Name :',
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          color: const Color.fromARGB(255, 65, 65, 65),
-                          fontSize: 12,
-                        ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Department Name :',
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
                       ),
-                      SizedBox(
-                        height: 10,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Doctor Name :',
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
                       ),
-                      Text(
-                        'Department Name :',
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          color: const Color.fromARGB(255, 65, 65, 65),
-                          fontSize: 12,
-                        ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Alias Name :',
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
                       ),
-                      SizedBox(
-                        height: 10,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Ward No :',
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
                       ),
-                      Text(
-                        'Doctor Name :',
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          color: const Color.fromARGB(255, 65, 65, 65),
-                          fontSize: 12,
-                        ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Bio-Med :',
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: const Color.fromARGB(255, 65, 65, 65),
+                        fontSize: 12,
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Alias Name :',
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          color: const Color.fromARGB(255, 65, 65, 65),
-                          fontSize: 12,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Ward No :',
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          color: const Color.fromARGB(255, 65, 65, 65),
-                          fontSize: 12,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Bio-Med :',
-                        style: TextStyle(
-                          fontFamily: 'Avenir',
-                          color: const Color.fromARGB(255, 65, 65, 65),
-                          fontSize: 12,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 80, top: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      for (var info in deviceData['deviceInfo'])
-                        Text(
-                          '${info['DeviceId']}',
-                          style: TextStyle(
-                            fontFamily: 'Avenir',
-                            color: const Color.fromARGB(255, 65, 65, 65),
-                            fontSize: 12,
-                          ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 80, top: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['DeviceId']}',
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
                         ),
-                      SizedBox(
-                        height: 10,
                       ),
-                      for (var info in deviceData['deviceInfo'])
-                        Text(
-                          '${info['Hospital_Name']}',
-                          style: TextStyle(
-                            fontFamily: 'Avenir',
-                            color: const Color.fromARGB(255, 65, 65, 65),
-                            fontSize: 12,
-                          ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Hospital_Name']}',
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
                         ),
-                      SizedBox(
-                        height: 10,
                       ),
-                      for (var info in deviceData['deviceInfo'])
-                        Text(
-                          '${info['Department_Name']}',
-                          style: TextStyle(
-                            fontFamily: 'Avenir',
-                            color: const Color.fromARGB(255, 65, 65, 65),
-                            fontSize: 12,
-                          ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Department_Name']}',
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
                         ),
-                      SizedBox(
-                        height: 10,
                       ),
-                      for (var info in deviceData['deviceInfo'])
-                        Text(
-                          '${info['Doctor_Name']}',
-                          style: TextStyle(
-                            fontFamily: 'Avenir',
-                            color: const Color.fromARGB(255, 65, 65, 65),
-                            fontSize: 12,
-                          ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Doctor_Name']}',
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
                         ),
-                      SizedBox(
-                        height: 10,
                       ),
-                      for (var info in deviceData['deviceInfo'])
-                        Text(
-                          '${info['Alias_Name']}',
-                          style: TextStyle(
-                            fontFamily: 'Avenir',
-                            color: const Color.fromARGB(255, 65, 65, 65),
-                            fontSize: 12,
-                          ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Alias_Name']}',
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
                         ),
-                      SizedBox(
-                        height: 10,
                       ),
-                      for (var info in deviceData['deviceInfo'])
-                        Text(
-                          '${info['Ward_No']}',
-                          style: TextStyle(
-                            fontFamily: 'Avenir',
-                            color: const Color.fromARGB(255, 65, 65, 65),
-                            fontSize: 12,
-                          ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Ward_No']}',
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
                         ),
-                      SizedBox(
-                        height: 10,
                       ),
-                      for (var info in deviceData['deviceInfo'])
-                        Text(
-                          '${info['Bio_Med']}',
-                          style: TextStyle(
-                            fontFamily: 'Avenir',
-                            color: const Color.fromARGB(255, 65, 65, 65),
-                            fontSize: 12,
-                          ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    for (var info in deviceData['deviceInfo'])
+                      Text(
+                        '${info['Bio_Med']}',
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          color: const Color.fromARGB(255, 65, 65, 65),
+                          fontSize: 12,
                         ),
-                      SizedBox(
-                        height: 15,
                       ),
-                    ],
-                  ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16, bottom: 20),
+          child: Container(
+            height: 40,
+            width: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3),
+                  spreadRadius: 1,
+                  blurRadius: 10,
+                  offset: Offset(0, 3),
                 ),
               ],
+              color: Color.fromARGB(255, 157, 0, 86),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Container(
-              height: 40,
-              width: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    spreadRadius: 1,
-                    blurRadius: 10,
-                    offset: Offset(0, 3),
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DeviceDetails(deviceData),
                   ),
-                ],
-                color: Color.fromARGB(255, 157, 0, 86),
-              ),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DeviceDetails(deviceData),
-                    ),
-                  );
-                },
-                style: TextButton.styleFrom(),
-                child: Text(
-                  "Request",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
+                );
+              },
+              style: TextButton.styleFrom(),
+              child: Text(
+                "Request",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
                 ),
               ),
             ),
           ),
-        ],
+        ),
+      ],
     );
   }
 
