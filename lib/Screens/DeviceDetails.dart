@@ -4,9 +4,15 @@ import 'package:agva_app/Screens/DeviceAbout.dart';
 import 'package:agva_app/Screens/MonitorData.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DeviceDetails extends StatelessWidget {
   final Map<String, dynamic> deviceData;
+
+  Future<String?> getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('mytoken');
+  }
 
   DeviceDetails(this.deviceData);
 
@@ -315,6 +321,25 @@ class DeviceDetails extends StatelessWidget {
                 ],
               ),
             ),
+          //   Positioned(
+          //   top: 10,
+          //   right: 10,
+          //   child: FutureBuilder<String?>(
+          //     future: getToken(),
+          //     builder: (context, snapshot) {
+          //       if (snapshot.connectionState == ConnectionState.waiting) {
+          //         return CircularProgressIndicator();
+          //       } else if (snapshot.hasError) {
+          //         return Text('Error: ${snapshot.error}');
+          //       } else if (snapshot.hasData) {
+          //         String? token = snapshot.data;
+          //         return Text('Token: $token', style: TextStyle(fontSize: 16));
+          //       } else {
+          //         return Text('Token not found', style: TextStyle(fontSize: 16));
+          //       }
+          //     },
+          //   ),
+          // ),
           ],
         ),
       ),

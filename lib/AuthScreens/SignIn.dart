@@ -2,9 +2,9 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../Screens/HomeScreen.dart';
 import '../config.dart';
 import './SignUp.dart';
 
@@ -16,8 +16,6 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  // bool _isNotValidate = false;
 
   bool passwordVisible = true;
   late SharedPreferences prefs;
@@ -31,6 +29,8 @@ class _SignInState extends State<SignIn> {
   void initSharedPref() async {
     prefs = await SharedPreferences.getInstance();
   }
+
+  String mytoken = "token";
 
   void signIn() async {
     if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
@@ -52,15 +52,19 @@ class _SignInState extends State<SignIn> {
           var hospitalName = data['hospitalName'];
           var token = data['token'];
 
+          // Save the token
+          saveToken(token);
+
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeScreen({
-                  'name': name,
-                  'hospitalName': hospitalName,
-                  'token': token
-                }),
-              ));
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeScreen({
+                'name': name,
+                'hospitalName': hospitalName,
+                'token': token
+              }),
+            ),
+          );
         } else {
           print('Invalid User Credential: ${response.statusCode}');
         }
@@ -68,6 +72,11 @@ class _SignInState extends State<SignIn> {
         print('Error: $e');
       }
     }
+  }
+
+  Future<void> saveToken(String mytoken) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('mytoken', mytoken);
   }
 
   @override

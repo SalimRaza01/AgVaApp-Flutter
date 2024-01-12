@@ -4,36 +4,48 @@ import 'dart:convert';
 import 'package:agva_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DeviceAbout extends StatelessWidget {
   final String deviceId;
 
+  Future<String?> getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('mytoken');
+  }
+
   DeviceAbout(this.deviceId);
 
   var mydeviceid = '724963b4f3ae2a8f';
-  var token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU4YTcxNjc4OTc4NTYzYWZjODZlNGFkIiwianRpIjoiQ2xjb05xQjdGWCIsImlhdCI6MTcwNTA0MDk2NywiZXhwIjoxNzA2MzM2OTY3fQ.J4gXkfgnSnmttAzcSRyjn_uTQ1XI-jHCQWE8iBdsSd4';
-
-  void getProductionData() async {
+  
+void getProductionDetails() async {
+  String? token = await getToken(); 
+  if (token != null) {
+    print(token);
     var response = await http.get(
       Uri.parse('$getProductionData/$mydeviceid'),
-       headers: {
-          "Authorization": 'Bearer $token',
-        },
+      headers: {
+        "Authorization": 'Bearer $token',
+      },
     );
     var jsonResponse = jsonDecode(response.body);
     print(jsonResponse);
     if (jsonResponse['statusValue'] == 'SUCCESS') {
       var data = jsonResponse['data'];
       print('production data $data');
-      print('production data $deviceId');
+      // print('production data $deviceId');
     } else {
       print('Invalid User Credential: ${response.statusCode}');
     }
+  } else {
+    print('Token not found'); 
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
+      getProductionDetails();
     return Container(
       decoration: BoxDecoration(),
       child: Scaffold(
@@ -71,7 +83,7 @@ class DeviceAbout extends StatelessWidget {
                                 Text(
                                   'Product :',
                                   //  deviceId,
-                                  //  ' ${data['productType']}',
+                                  //  data['productType'],
                                   style: TextStyle(
                                     fontFamily: 'Avenir',
                                     color: Color.fromARGB(255, 58, 58, 58),
@@ -141,12 +153,12 @@ class DeviceAbout extends StatelessWidget {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 150),
+                              padding: const EdgeInsets.only(left: 20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    '--',
+                                    deviceId,
                                     style: TextStyle(
                                       fontFamily: 'Avenir',
                                       color: Color.fromARGB(255, 58, 58, 58),
