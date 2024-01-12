@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../widgets/BtnWidget.dart';
 import '../widgets/MDWidget.dart';
 
@@ -12,6 +13,11 @@ class MonitorData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<dynamic> deviceInfoList = deviceData['deviceInfo'];
+
+ SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
 
     return Container(
       decoration: BoxDecoration(),

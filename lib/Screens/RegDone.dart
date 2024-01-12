@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../AuthScreens/SignIn.dart';
 
 class RegDone extends StatefulWidget {
@@ -24,6 +25,10 @@ class _RegDoneState extends State<RegDone> {
 
   @override
   Widget build(BuildContext context) {
+         SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      // DeviceOrientation.landscapeRight,
+    ]);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
